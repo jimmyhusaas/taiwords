@@ -1,0 +1,42 @@
+# 圖鑑分類定義
+# 對應 docs/02-data-schema.md 的 category 實體
+categories:
+  - slug: it
+    name_zh_tw: 資訊／軟體
+    description: 電腦、軟體開發、網路技術相關用語
+
+  - slug: daily-life
+    name_zh_tw: 日常生活
+    description: 食衣住行育樂中的日常用詞
+
+  - slug: food
+    name_zh_tw: 飲食
+    description: 食物、料理、飲品名稱
+
+  - slug: transport
+    name_zh_tw: 交通
+    description: 交通工具、道路、運輸
+
+  - slug: media
+    name_zh_tw: 影視娛樂
+    description: 影視、音樂、遊戲、娛樂
+
+  - slug: business
+    name_zh_tw: 商業／金融
+    description: 商業、金融、投資、職場
+
+  - slug: internet-slang
+    name_zh_tw: 網路流行語
+    description: 網路次文化、迷因、流行詞
+
+  - slug: politics
+    name_zh_tw: 政治／制度
+    description: 政治、法律、行政制度（敏感類別，需特別審核）
+
+  - slug: academic
+    name_zh_tw: 學術／教育
+    description: 教育、學術、研究領域用詞
+
+  - slug: sports
+    name_zh_tw: 體育
+    description: 運動、賽事、體育術語

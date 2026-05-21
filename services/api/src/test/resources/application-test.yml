@@ -1,0 +1,16 @@
+# 測試 profile：用 H2 in-memory（後續換 Testcontainers Postgres）
+spring:
+  datasource:
+    url: jdbc:h2:mem:taiwords_test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+
+taiwords:
+  seed:
+    enabled: false

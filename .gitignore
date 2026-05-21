@@ -1,0 +1,67 @@
+# ─── JVM / Gradle ───────────────────────────────────────
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Maven (in case)
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+
+# ─── IDE ────────────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.project
+.classpath
+.settings/
+.factorypath
+*.sublime-workspace
+*.sublime-project
+
+# ─── OS ─────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Logs / runtime ─────────────────────────────────────
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# ─── Env / secrets ──────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ─── Docker volumes ─────────────────────────────────────
+.postgres-data/
+.redis-data/
+
+# ─── Node (for future Chrome Ext / Web) ─────────────────
+node_modules/
+dist/
+.next/
+.turbo/
+coverage/
+
+# ─── Python (for future NLP service) ────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# ─── Misc ───────────────────────────────────────────────
+*.swp
+*.swo
+*~

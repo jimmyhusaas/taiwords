@@ -1,0 +1,435 @@
+# 種子詞庫（v0）
+# 用途：作為架構驗證與 demo，並非完整詞庫
+# 完整詞庫的種子來源請見 docs/04-data-sources.md
+#
+# 欄位說明請見 docs/02-data-schema.md
+# confidence:
+#   1.0 - 公認支語
+#   0.8 - 多數情境是
+#   0.6 - 偏中國用法但兩岸混用
+#   0.4 - 中性，僅供參考
+
+# ============ IT / 軟體類 ============
+terms:
+  - slug: software-ruanjian
+    canonical_zh_tw: 軟體
+    canonical_zh_cn: 软件
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+    context_required: false
+    examples:
+      - text: 這套軟體很好用
+        region: tw
+      - text: 这套软件很好用
+        region: cn
+
+  - slug: hardware-yingjian
+    canonical_zh_tw: 硬體
+    canonical_zh_cn: 硬件
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: video-shipin
+    canonical_zh_tw: 影片
+    canonical_zh_cn: 视频
+    type: same_meaning_diff_name
+    categories: [media, it]
+    confidence: 0.95
+    examples:
+      - text: 看影片放鬆一下
+        region: tw
+      - text: 看视频放松一下
+        region: cn
+    notes: |
+      「視頻」原指「視訊頻道」的縮寫，在中國大陸引申為一般影片。
+      台灣教育部辭典 2023 年將其收錄為影音檔案釋義，引起立委關注。
+
+  - slug: screen-pingmu
+    canonical_zh_tw: 螢幕
+    canonical_zh_cn: 屏幕
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: file-wenjian
+    canonical_zh_tw: 檔案
+    canonical_zh_cn: 文件
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+    context_required: true
+    notes: |
+      「文件」在台灣指 document（正式文書）；在中國指 file（檔案）。
+      屬於同名異實，偵測時需看上下文。
+
+  - slug: folder-wenjianjia
+    canonical_zh_tw: 資料夾
+    canonical_zh_cn: 文件夹
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: program-chengxu
+    canonical_zh_tw: 程式
+    canonical_zh_cn: 程序
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.8
+    context_required: true
+    notes: 「程序」在台灣指 procedure（流程），中國則同時指 program/process。
+
+  - slug: memory-neicun
+    canonical_zh_tw: 記憶體
+    canonical_zh_cn: 内存
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: data-shuju
+    canonical_zh_tw: 資料
+    canonical_zh_cn: 数据
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: database-shujuku
+    canonical_zh_tw: 資料庫
+    canonical_zh_cn: 数据库
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: network-wangluo
+    canonical_zh_tw: 網路
+    canonical_zh_cn: 网络
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: object-duixiang
+    canonical_zh_tw: 物件
+    canonical_zh_cn: 对象
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+    context_required: true
+    notes: 「對象」在台灣多指交往對象；程式語境中才是 object。
+
+  - slug: class-leibie
+    canonical_zh_tw: 類別
+    canonical_zh_cn: 类
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.7
+
+  - slug: array-shuzu
+    canonical_zh_tw: 陣列
+    canonical_zh_cn: 数组
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: algorithm-suanfa
+    canonical_zh_tw: 演算法
+    canonical_zh_cn: 算法
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: function-hanshu
+    canonical_zh_tw: 函式
+    canonical_zh_cn: 函数
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+
+  - slug: default-yushe
+    canonical_zh_tw: 預設
+    canonical_zh_cn: 默认
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: cache-kuaiqu
+    canonical_zh_tw: 快取
+    canonical_zh_cn: 缓存
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: plugin-waigua
+    canonical_zh_tw: 外掛
+    canonical_zh_cn: 插件
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: print-dayin
+    canonical_zh_tw: 列印
+    canonical_zh_cn: 打印
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: bug-quexian
+    canonical_zh_tw: 漏洞
+    canonical_zh_cn: 缺陷
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.5
+    notes: 兩岸都常用 bug 原文。
+
+  - slug: high-definition
+    canonical_zh_tw: 高畫質
+    canonical_zh_cn: 高清
+    type: same_meaning_diff_name
+    categories: [media, it]
+    confidence: 0.9
+
+  - slug: developer-kaifa
+    canonical_zh_tw: 開發者
+    canonical_zh_cn: 开发者
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.3
+
+# ============ 日常生活類 ============
+  - slug: greeting-good-evening
+    canonical_zh_tw: 晚安
+    canonical_zh_cn: 晚上好
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.8
+    context_required: true
+    notes: |
+      「晚上好」是中國的入夜問候；「晚安」在台灣既可入夜問候，也可道別。
+      此例為使用者最初想到的典型案例。
+
+  - slug: cool-niubi
+    canonical_zh_tw: 厲害
+    canonical_zh_cn: 牛逼
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 帶有粗口色彩的中國網路用語。
+
+  - slug: awesome-geili
+    canonical_zh_tw: 厲害／到位
+    canonical_zh_cn: 给力
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.85
+
+  - slug: net-celeb-wanghong
+    canonical_zh_tw: 網紅
+    canonical_zh_cn: 网红
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.3
+    notes: 起源於中國，但台灣已普遍使用，難以再視為純粹支語。
+
+  - slug: quality-zhiliang
+    canonical_zh_tw: 品質
+    canonical_zh_cn: 质量
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.9
+    context_required: true
+    notes: 「質量」在台灣是物理概念（mass），不是 quality。
+
+  - slug: info-xinxi
+    canonical_zh_tw: 資訊
+    canonical_zh_cn: 信息
+    type: same_meaning_diff_name
+    categories: [daily-life, it]
+    confidence: 0.8
+
+  - slug: weibo
+    canonical_zh_tw: 社群貼文
+    canonical_zh_cn: 微博
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 1.0
+    notes: 中國特定社群平台名稱，無對應「同實異名」。
+
+# ============ 飲食類 ============
+  - slug: potato-tudou
+    canonical_zh_tw: 馬鈴薯
+    canonical_zh_cn: 土豆
+    type: same_name_diff_meaning
+    categories: [food]
+    confidence: 0.95
+    context_required: true
+    notes: |
+      經典同名異實：台灣「土豆」=花生，中國「土豆」=馬鈴薯。
+      偵測時必須結合上下文，否則容易誤判。
+
+  - slug: pineapple-boluo
+    canonical_zh_tw: 鳳梨
+    canonical_zh_cn: 菠萝
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+
+  - slug: instant-noodle
+    canonical_zh_tw: 泡麵
+    canonical_zh_cn: 方便面
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+
+  - slug: takeaway-waimai
+    canonical_zh_tw: 外送
+    canonical_zh_cn: 外卖
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.9
+
+# ============ 交通類 ============
+  - slug: bus-gongjiao
+    canonical_zh_tw: 公車
+    canonical_zh_cn: 公交
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.95
+
+  - slug: motorbike-mojuche
+    canonical_zh_tw: 機車
+    canonical_zh_cn: 摩托车
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.9
+    context_required: true
+    notes: 「機車」在台灣口語亦可指「煩人」。
+
+  - slug: subway-ditie
+    canonical_zh_tw: 捷運
+    canonical_zh_cn: 地铁
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.85
+    notes: 台灣「捷運」涵蓋的軌道系統（含 BRT），與「地鐵」不全等。
+
+  - slug: taxi-dache
+    canonical_zh_tw: 計程車／叫車
+    canonical_zh_cn: 出租车／打车
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.95
+
+# ============ 影視娛樂 ============
+  - slug: anime-dongman
+    canonical_zh_tw: 動畫／動漫
+    canonical_zh_cn: 动漫
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.4
+    notes: 「動漫」一詞在台灣也通用，難視為純粹支語。
+
+  - slug: actor-yanyi
+    canonical_zh_tw: 演員
+    canonical_zh_cn: 演员
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.1
+
+  - slug: queue-paidui
+    canonical_zh_tw: 排隊
+    canonical_zh_cn: 排队
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.1
+
+# ============ 商業 / 金融 ============
+  - slug: optimize-youhua
+    canonical_zh_tw: 最佳化
+    canonical_zh_cn: 优化
+    type: same_meaning_diff_name
+    categories: [it, business]
+    confidence: 0.4
+    notes: 「優化」在台灣已被廣泛使用，是否屬支語有爭議。
+
+  - slug: project-xiangmu
+    canonical_zh_tw: 專案
+    canonical_zh_cn: 项目
+    type: same_meaning_diff_name
+    categories: [business, it]
+    confidence: 0.85
+
+  - slug: layoff-youhua
+    canonical_zh_tw: 裁員
+    canonical_zh_cn: 优化
+    type: same_name_diff_meaning
+    categories: [business, internet-slang]
+    confidence: 0.7
+    context_required: true
+    notes: |
+      中國科技業近年用「優化」做為「裁員」的委婉說法，屬於語意污染案例。
+      在「員工優化」「人員優化」等上下文中應警示。
+
+# ============ 學術 / 教育 ============
+  - slug: campus-bully
+    canonical_zh_tw: （無對應慣用詞）
+    canonical_zh_cn: 校霸
+    type: cn_only
+    categories: [academic, internet-slang]
+    confidence: 1.0
+    notes: 中國校園文化用語，台灣多用「霸凌者／流氓學生」描述。
+
+  - slug: top-student
+    canonical_zh_tw: 學霸
+    canonical_zh_cn: 学霸
+    type: same_meaning_diff_name
+    categories: [academic, internet-slang]
+    confidence: 0.5
+    notes: 兩岸都用，但起源於中國。
+
+# ============ 政治 / 制度（敏感） ============
+  - slug: hukou
+    canonical_zh_tw: 戶籍
+    canonical_zh_cn: 户口
+    type: same_meaning_diff_name
+    categories: [politics]
+    confidence: 0.9
+    context_required: true
+    notes: 中國的「戶口」是限制遷徙的制度，與台灣「戶籍」概念不完全對應。
+
+  - slug: chengguan
+    canonical_zh_tw: （無對應）
+    canonical_zh_cn: 城管
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 中國特有的城市管理執法人員。
+
+# ============ Sources（內嵌示例，未來分離到 sources.yaml） ============
+sources:
+  - id: src-moedict-csld
+    name: g0v moedict-data-csld
+    url: https://github.com/g0v/moedict-data-csld
+    license: 沿用萌典開放精神
+    type: dataset
+    description: g0v 維護的兩岸三地生活差異詞語彙編
+
+  - id: src-hackmd-it
+    name: 台閩與中國大陸的計算機術語/用語對照表
+    url: https://hackmd.io/@SeanPeng/B1psY1s6K
+    license: 未明示，引用註明出處
+    type: wiki
+    description: SeanPeng 整理的 IT 術語兩岸對照
+
+  - id: src-opencc
+    name: OpenCC TWPhrases
+    url: https://github.com/BYVoid/OpenCC
+    license: Apache-2.0
+    type: dataset
+    description: 繁簡轉換含台灣慣用詞詞庫
+
+  - id: src-wikibooks
+    name: 大陸臺灣計算機術語對照表
+    url: https://zh.wikibooks.org/zh-tw/大陸臺灣計算機術語對照表
+    license: CC-BY-SA-3.0
+    type: wiki
+    description: 維基教科書上的兩岸 IT 用語對照

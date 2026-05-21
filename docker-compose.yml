@@ -1,0 +1,44 @@
+# TaiWords 本地開發 / demo 用堆疊
+# 用法：
+#   docker compose up -d     # 啟動 postgres + api
+#   docker compose logs -f api
+#   docker compose down -v   # 完整清乾淨（含資料）
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: taiwords-postgres
+    environment:
+      POSTGRES_DB: taiwords
+      POSTGRES_USER: taiwords
+      POSTGRES_PASSWORD: taiwords
+    ports:
+      - "5432:5432"
+    volumes:
+      - taiwords-pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "taiwords"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+    container_name: taiwords-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      TAIWORDS_DB_URL: jdbc:postgresql://postgres:5432/taiwords
+      TAIWORDS_DB_USER: taiwords
+      TAIWORDS_DB_PASSWORD: taiwords
+      TAIWORDS_LOG_LEVEL: INFO
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+volumes:
+  taiwords-pg-data:
