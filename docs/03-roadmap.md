@@ -15,7 +15,7 @@
 
 ## 1. Phase 切割
 
-### Phase 0 — 規劃（**目前所在階段**）
+### Phase 0 — 規劃（**完成**）
 **目標**：架構文件、資料 schema、種子詞庫，能說清楚要做什麼。
 
 - [x] 寫 README
@@ -23,26 +23,30 @@
 - [x] 資料 schema（`docs/02-data-schema.md`）
 - [x] Roadmap（本文件）
 - [x] 資料來源盤點（`docs/04-data-sources.md`）
-- [x] 種子詞庫 v0（`data/seed/terms.yaml`）
-- [ ] 建立 GitHub repo、加 LICENSE / CONTRIBUTING
+- [x] 種子詞庫 v1（`data/seed/terms.yaml`，200 條跨 10 分類）
+- [x] 建立 GitHub repo、加 LICENSE（MIT）
+- [ ] `CONTRIBUTING.md`（Phase 5 社群協作前補）
 
 **完成標準**：陌生人可以靠這些文件，理解專案要做什麼、為什麼這樣做、怎麼開始貢獻。
 
 ---
 
-### Phase 1 — 後端 MVP（4–6 週）
+### Phase 1 — 後端 MVP（**目前所在階段，主要工作完成**）
 **目標**：可以用 `curl` 把一段文字打進 API，回傳偵測結果。
 
 #### 工程任務
-- [ ] Monorepo 初始化（`apps/` + `services/` + `data/`）
-- [ ] Spring Boot 3 + Java 21 專案（`services/api`）
-  - [ ] Flyway migration（建表 + 種子資料載入）
-  - [ ] `GET /api/v1/terms` 列表、`GET /api/v1/terms/{slug}` 詳情
-  - [ ] `POST /api/v1/detect`（先做精確比對版本，不接 NLP service）
-  - [ ] OpenAPI（Springdoc）自動文件
-- [ ] Dockerfile + docker-compose（含 Postgres 17）
-- [ ] 單元測試覆蓋率 ≥ 60%（重點：偵測引擎、邊界字元、繁簡輸入）
-- [ ] GitHub Actions：build + test + Docker image push（GHCR）
+- [x] Monorepo 初始化（`services/` + `data/`；`apps/` 留待 Phase 2/3）
+- [x] Spring Boot 3 + Java 21 專案（`services/api`）
+  - [x] Flyway migration（`V1__init_schema.sql` 建表；種子資料由 `SeedLoader` 啟動時 upsert YAML）
+  - [x] `GET /api/v1/terms` 列表、`GET /api/v1/terms/{slug}` 詳情、`GET /api/v1/categories`
+  - [x] `POST /api/v1/detect`（OpenCC4J t2s 正規化 + long-to-short 字串掃描）
+  - [x] OpenAPI（Springdoc）自動文件
+- [x] Dockerfile + docker-compose（含 Postgres 17）
+- [x] 單元測試覆蓋率 ≥ 60%（核心 `DetectionService` 13 個 case 涵蓋繁簡輸入／邊界／長詞優先；
+      `DetectionIntegrationTest` 用 Zonky EmbeddedPostgres 跑 7 個 e2e case；
+      尚未跑 jacoco 量化數字，controllers 待補測試）
+- [x] GitHub Actions：build + test（包含整合測試）
+- [ ] GitHub Actions：Docker image push（GHCR）— 目前只 build 不 push
 
 #### Demo 標準
 ```bash
@@ -173,7 +177,9 @@ curl -X POST localhost:8080/api/v1/detect \
 
 ## 5. 下一步（馬上能做的）
 
-1. 建 GitHub repo `zhch-detector`，把現有文件 push 上去
-2. 在 `services/api` 開 Spring Boot 骨架 + Flyway 第一份 migration
-3. 寫一條 GitHub Actions：PR build → `docker build`，先不部署
-4. 把種子詞庫從 YAML 寫成 Flyway `V1__seed_terms.sql`（或啟動時 loader）
+Phase 1 收尾 → Phase 2 切入準備：
+
+1. **`min_confidence` 預設值校準**：目前 0.5，在 200 條詞庫中會把「電視劇」「自行車」這類兩岸通用詞也標出，雜訊偏多。Chrome Ext 上線前調到 0.7 或讓使用者可調。
+2. **Controller 層測試**：`TermController` / `DetectController` / `CategoryController` 目前只透過整合測試的服務層走過，需要 `@WebMvcTest` 補 request/response 行為驗證。
+3. **GHCR image push**：CI 加上 `docker/login-action` + `docker/build-push-action` 推 `ghcr.io/jimmyhusaas/taiwords-api`，供自架 demo 使用。
+4. **Phase 2 起手式**：建 `apps/extension`（WXT + TypeScript）骨架，串接本地 API 跑通最短迴路。
