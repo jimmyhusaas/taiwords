@@ -195,6 +195,49 @@ terms:
     categories: [it]
     confidence: 0.3
 
+  - slug: mouse-shubiao
+    canonical_zh_tw: 滑鼠
+    canonical_zh_cn: 鼠标
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: server-fuwuqi
+    canonical_zh_tw: 伺服器
+    canonical_zh_cn: 服务器
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: interface-jiemian
+    canonical_zh_tw: 介面
+    canonical_zh_cn: 界面
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+    notes: 軟體 UI 語境下；硬體 interface 兩岸也常譯「接口」。
+
+  - slug: login-denglu
+    canonical_zh_tw: 登入
+    canonical_zh_cn: 登录
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: link-lianjie
+    canonical_zh_tw: 連結
+    canonical_zh_cn: 链接
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+
+  - slug: printer-dayinji
+    canonical_zh_tw: 印表機
+    canonical_zh_cn: 打印机
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
 # ============ 日常生活類 ============
   - slug: greeting-good-evening
     canonical_zh_tw: 晚安
@@ -254,6 +297,63 @@ terms:
     confidence: 1.0
     notes: 中國特定社群平台名稱，無對應「同實異名」。
 
+  - slug: involution-neijuan
+    canonical_zh_tw: （無精準對應，常譯內捲）
+    canonical_zh_cn: 内卷
+    type: cn_only
+    categories: [internet-slang, business]
+    confidence: 0.95
+    notes: |
+      源自人類學「involution」，中國網路引申為非理性的過度競爭。
+      台灣媒體近年亦引用，但仍視為中國語境輸入詞。
+
+  - slug: lying-flat-tangping
+    canonical_zh_tw: （無精準對應，常譯躺平）
+    canonical_zh_cn: 躺平
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 中國青年世代對「內捲」的消極回應；台灣引用時通常帶引號。
+
+  - slug: vpn-fanqiang
+    canonical_zh_tw: 翻牆
+    canonical_zh_cn: 翻墙
+    type: same_meaning_diff_name
+    categories: [internet-slang, politics]
+    confidence: 0.9
+    notes: 中國語境特有，指繞過 GFW 連外網。台灣亦使用但情境多在討論中國時。
+
+  - slug: like-dianzan
+    canonical_zh_tw: 按讚
+    canonical_zh_cn: 点赞
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.95
+
+  - slug: good-morning
+    canonical_zh_tw: 早安
+    canonical_zh_cn: 早上好
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.8
+    context_required: true
+    notes: 中國的入夜／清晨問候習慣為「上午好／晚上好」，台灣多用「早安／晚安」。
+
+  - slug: photocopy-fuyin
+    canonical_zh_tw: 影印
+    canonical_zh_cn: 复印
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.95
+
+  - slug: aircon-kongtiao
+    canonical_zh_tw: 冷氣
+    canonical_zh_cn: 空调
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.85
+    notes: 台灣口語「冷氣」泛指冷氣機；「空調」涵蓋冷暖通用，台灣工程界亦用。
+
 # ============ 飲食類 ============
   - slug: potato-tudou
     canonical_zh_tw: 馬鈴薯
@@ -287,6 +387,29 @@ terms:
     categories: [food]
     confidence: 0.9
 
+  - slug: tomato-xihongshi
+    canonical_zh_tw: 番茄
+    canonical_zh_cn: 西红柿
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.9
+    notes: 中國北方多用「西紅柿」，南方亦用「番茄」；台灣統一用番茄。
+
+  - slug: kiwi-mihoutao
+    canonical_zh_tw: 奇異果
+    canonical_zh_cn: 猕猴桃
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+
+  - slug: yogurt-suannai
+    canonical_zh_tw: 優酪乳
+    canonical_zh_cn: 酸奶
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.85
+    notes: 台灣亦稱優格（固態），優酪乳常指可飲用形態。
+
 # ============ 交通類 ============
   - slug: bus-gongjiao
     canonical_zh_tw: 公車
@@ -319,6 +442,22 @@ terms:
     categories: [transport]
     confidence: 0.95
 
+  - slug: hsr-gaotie
+    canonical_zh_tw: 高鐵
+    canonical_zh_cn: 高铁
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.6
+    notes: 中國「高鐵」指中國鐵路系統高速線；台灣「高鐵」指台灣高鐵公司。詞同義近，但所指系統不同。
+
+  - slug: bike-zixingche
+    canonical_zh_tw: 腳踏車
+    canonical_zh_cn: 自行车
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.5
+    notes: 台灣「自行車」亦通用，特別在運動／公路車語境。
+
 # ============ 影視娛樂 ============
   - slug: anime-dongman
     canonical_zh_tw: 動畫／動漫
@@ -341,6 +480,21 @@ terms:
     type: same_meaning_diff_name
     categories: [daily-life]
     confidence: 0.1
+
+  - slug: tv-series-dianshiju
+    canonical_zh_tw: 連續劇
+    canonical_zh_cn: 电视剧
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.7
+    notes: 「電視劇」在台灣亦廣泛使用，並非純粹支語。
+
+  - slug: showbiz-yulequan
+    canonical_zh_tw: 演藝圈
+    canonical_zh_cn: 娱乐圈
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.85
 
 # ============ 商業 / 金融 ============
   - slug: optimize-youhua
@@ -369,6 +523,21 @@ terms:
       中國科技業近年用「優化」做為「裁員」的委婉說法，屬於語意污染案例。
       在「員工優化」「人員優化」等上下文中應警示。
 
+  - slug: channel-qudao
+    canonical_zh_tw: 通路
+    canonical_zh_cn: 渠道
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.9
+    notes: 商業／行銷語境下的 sales channel；台灣亦用「銷售通路」。
+
+  - slug: resume-jianli
+    canonical_zh_tw: 履歷
+    canonical_zh_cn: 简历
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.95
+
 # ============ 學術 / 教育 ============
   - slug: campus-bully
     canonical_zh_tw: （無對應慣用詞）
@@ -385,6 +554,21 @@ terms:
     categories: [academic, internet-slang]
     confidence: 0.5
     notes: 兩岸都用，但起源於中國。
+
+  - slug: junior-high-chuzhong
+    canonical_zh_tw: 國中
+    canonical_zh_cn: 初中
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.95
+
+  - slug: primary-school-xiaoxue
+    canonical_zh_tw: 國小
+    canonical_zh_cn: 小学
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.85
+    notes: 「小學」在台灣亦通用，「國小」為正式名稱。
 
 # ============ 政治 / 制度（敏感） ============
   - slug: hukou
@@ -403,6 +587,45 @@ terms:
     categories: [politics]
     confidence: 1.0
     notes: 中國特有的城市管理執法人員。
+
+  - slug: gonganbu
+    canonical_zh_tw: （無對應，台灣稱警察）
+    canonical_zh_cn: 公安
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 中國公安系統，相當於台灣警察＋部分情治職能。
+
+  - slug: weiwen
+    canonical_zh_tw: （無對應）
+    canonical_zh_cn: 维稳
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 「維護社會穩定」的中國政治術語，常涉及壓制異議。
+
+# ============ 體育 ============
+  - slug: table-tennis-pingpang
+    canonical_zh_tw: 桌球
+    canonical_zh_cn: 乒乓球
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+
+  - slug: billiards-taiqiu
+    canonical_zh_tw: 撞球
+    canonical_zh_cn: 台球
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+    notes: 「台球」在台灣易被誤解為「桌球」，宜改稱撞球。
+
+  - slug: weight-training
+    canonical_zh_tw: 重訓
+    canonical_zh_cn: 力量训练
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.8
 
 # ============ Sources（內嵌示例，未來分離到 sources.yaml） ============
 sources:
