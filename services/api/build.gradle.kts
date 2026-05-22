@@ -48,6 +48,10 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.20.2")
     testImplementation("org.testcontainers:postgresql:1.20.2")
+    // EmbeddedPostgres for integration tests — 自帶 PG 17 binary，跑真實 PG 而不需要 docker。
+    // 與 testcontainers 等價的好處：開發機只要 Java 21；CI 不需要 service postgres。
+    testImplementation("io.zonky.test:embedded-postgres:2.0.7")
+    testImplementation(enforcedPlatform("io.zonky.test.postgres:embedded-postgres-binaries-bom:17.2.0"))
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("com.h2database:h2")
 }
@@ -56,6 +60,17 @@ tasks.withType<Test> {
     useJUnitPlatform()
     testLogging {
         events("passed", "skipped", "failed")
+    }
+    // 把 -D 屬性從 Gradle CLI 轉發到 forked test JVM（預設不會繼承）。
+    // 用於整合測試 toggle 與 DB 連線覆寫，例如：
+    //   ./gradlew test -Dintegration.test=true -Dintegration.db.url=jdbc:postgresql://...
+    listOf(
+        "integration.test",
+        "integration.db.url",
+        "integration.db.user",
+        "integration.db.password"
+    ).forEach { key ->
+        System.getProperty(key)?.let { systemProperty(key, it) }
     }
 }
 

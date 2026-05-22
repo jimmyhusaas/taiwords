@@ -44,7 +44,9 @@ jobs:
           TAIWORDS_DB_URL: jdbc:postgresql://localhost:5432/taiwords_test
           TAIWORDS_DB_USER: taiwords
           TAIWORDS_DB_PASSWORD: taiwords
-        run: ./gradlew build --no-daemon
+        # -Dintegration.test=true 打開 DetectionIntegrationTest，連到上面起的
+        # postgres service。其餘 unit test (DetectionServiceTest 等) 平常就會跑。
+        run: ./gradlew build --no-daemon -Dintegration.test=true
 
       - name: Upload test reports
         if: always()
