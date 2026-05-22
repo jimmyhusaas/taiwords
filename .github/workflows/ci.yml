@@ -11,21 +11,6 @@ jobs:
     name: API · Build & Test
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:17-alpine
-        env:
-          POSTGRES_DB: taiwords_test
-          POSTGRES_USER: taiwords
-          POSTGRES_PASSWORD: taiwords
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U taiwords"
-          --health-interval 5s
-          --health-timeout 3s
-          --health-retries 10
-
     steps:
       - uses: actions/checkout@v4
 
@@ -40,12 +25,8 @@ jobs:
 
       - name: Build & Test
         working-directory: services/api
-        env:
-          TAIWORDS_DB_URL: jdbc:postgresql://localhost:5432/taiwords_test
-          TAIWORDS_DB_USER: taiwords
-          TAIWORDS_DB_PASSWORD: taiwords
-        # -Dintegration.test=true 打開 DetectionIntegrationTest，連到上面起的
-        # postgres service。其餘 unit test (DetectionServiceTest 等) 平常就會跑。
+        # -Dintegration.test=true 打開 DetectionIntegrationTest，使用 Zonky
+        # EmbeddedPostgres 在 JVM 內啟動真實 PG 17，不需 service postgres。
         run: ./gradlew build --no-daemon -Dintegration.test=true
 
       - name: Upload test reports
