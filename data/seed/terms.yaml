@@ -195,6 +195,312 @@ terms:
     categories: [it]
     confidence: 0.3
 
+  - slug: mouse-shubiao
+    canonical_zh_tw: 滑鼠
+    canonical_zh_cn: 鼠标
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: server-fuwuqi
+    canonical_zh_tw: 伺服器
+    canonical_zh_cn: 服务器
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: interface-jiemian
+    canonical_zh_tw: 介面
+    canonical_zh_cn: 界面
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+    notes: 軟體 UI 語境下；硬體 interface 兩岸也常譯「接口」。
+
+  - slug: login-denglu
+    canonical_zh_tw: 登入
+    canonical_zh_cn: 登录
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: link-lianjie
+    canonical_zh_tw: 連結
+    canonical_zh_cn: 链接
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+
+  - slug: printer-dayinji
+    canonical_zh_tw: 印表機
+    canonical_zh_cn: 打印机
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: account-zhanghao
+    canonical_zh_tw: 帳號
+    canonical_zh_cn: 账号
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+    notes: 簡繁差為主；中國寫「账号」(无人字旁)。
+
+  - slug: variable-bianliang
+    canonical_zh_tw: 變數
+    canonical_zh_cn: 变量
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: string-zifuchuan
+    canonical_zh_tw: 字串
+    canonical_zh_cn: 字符串
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: loop-xunhuan
+    canonical_zh_tw: 迴圈
+    canonical_zh_cn: 循环
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: resolution-fenbianlv
+    canonical_zh_tw: 解析度
+    canonical_zh_cn: 分辨率
+    type: same_meaning_diff_name
+    categories: [it, media]
+    confidence: 0.95
+
+  - slug: cloud-yunduan
+    canonical_zh_tw: 雲端
+    canonical_zh_cn: 云
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.8
+    notes: 「雲端服務」vs「云服务」；中國通常省略「端」字。
+
+  - slug: window-chuangkou
+    canonical_zh_tw: 視窗
+    canonical_zh_cn: 窗口
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+    context_required: true
+    notes: 「窗口」在台灣可指辦事窗口（櫃台）；中國 GUI 語境下指 window。
+
+  - slug: desktop-pc-taishiji
+    canonical_zh_tw: 桌機
+    canonical_zh_cn: 台式机
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: laptop-bijiben
+    canonical_zh_tw: 筆電
+    canonical_zh_cn: 笔记本电脑
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: screenshot-jieping
+    canonical_zh_tw: 螢幕截圖
+    canonical_zh_cn: 截屏
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+    notes: 台灣亦常用「截圖」；「截屏」較中國語感。
+
+  - slug: usb-stick-upan
+    canonical_zh_tw: 隨身碟
+    canonical_zh_cn: U盘
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: gpu-xianka
+    canonical_zh_tw: 顯示卡
+    canonical_zh_cn: 显卡
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.9
+
+  - slug: motherboard-zhuban
+    canonical_zh_tw: 主機板
+    canonical_zh_cn: 主板
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+
+  - slug: hacker-heike
+    canonical_zh_tw: 駭客
+    canonical_zh_cn: 黑客
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: programmer-chengxuyuan
+    canonical_zh_tw: 程式設計師
+    canonical_zh_cn: 程序员
+    type: same_meaning_diff_name
+    categories: [it, business]
+    confidence: 0.95
+    notes: 台灣亦簡稱「工程師」「軟體工程師」。
+
+  - slug: blog-boke
+    canonical_zh_tw: 部落格
+    canonical_zh_cn: 博客
+    type: same_meaning_diff_name
+    categories: [it, media]
+    confidence: 0.95
+
+  - slug: streaming-liumeiti
+    canonical_zh_tw: 串流
+    canonical_zh_cn: 流媒体
+    type: same_meaning_diff_name
+    categories: [it, media]
+    confidence: 0.9
+
+  - slug: laser-jiguang
+    canonical_zh_tw: 雷射
+    canonical_zh_cn: 激光
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: disc-guangpan
+    canonical_zh_tw: 光碟
+    canonical_zh_cn: 光盘
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: firmware-guijian
+    canonical_zh_tw: 韌體
+    canonical_zh_cn: 固件
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: code-daima
+    canonical_zh_tw: 程式碼
+    canonical_zh_cn: 代码
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+    notes: 台灣亦稱「源碼／原始碼」；「代碼」較中國語感。
+
+  - slug: smartphone-zhinengshouji
+    canonical_zh_tw: 智慧型手機
+    canonical_zh_cn: 智能手机
+    type: same_meaning_diff_name
+    categories: [it, daily-life]
+    confidence: 0.95
+    notes: 「智慧」vs「智能」是 smart 的兩岸譯法分水嶺。
+
+  - slug: digital-shuwei
+    canonical_zh_tw: 數位
+    canonical_zh_cn: 数字
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+    context_required: true
+    notes: 「數位化／數位轉型」vs「数字化／数字转型」；「數字」在台灣指 number。
+
+  - slug: antivirus-shadu
+    canonical_zh_tw: 防毒軟體
+    canonical_zh_cn: 杀毒软件
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.95
+
+  - slug: image-tuxiang
+    canonical_zh_tw: 影像／圖像
+    canonical_zh_cn: 图像
+    type: same_meaning_diff_name
+    categories: [it, media]
+    confidence: 0.5
+    notes: 「圖像」在台灣亦通用，差異不顯著；列於詞庫供參。
+
+  - slug: wechat
+    canonical_zh_tw: （無對應，中國通訊軟體）
+    canonical_zh_cn: 微信
+    type: cn_only
+    categories: [it]
+    confidence: 1.0
+
+  - slug: douyin
+    canonical_zh_tw: （無對應；國際版為 TikTok）
+    canonical_zh_cn: 抖音
+    type: cn_only
+    categories: [it, media]
+    confidence: 1.0
+    notes: 中國版本為「抖音」，國際版本為 TikTok，演算法與內容池均不同。
+
+  - slug: xiaohongshu
+    canonical_zh_tw: （無對應，中國社群電商）
+    canonical_zh_cn: 小红书
+    type: cn_only
+    categories: [it, media]
+    confidence: 1.0
+
+  - slug: click-dianji
+    canonical_zh_tw: 點選／點擊
+    canonical_zh_cn: 点击
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.3
+    notes: 「點擊」在台灣亦廣泛使用；「點選」較具台灣慣用色彩。
+
+  - slug: logout-tuichu
+    canonical_zh_tw: 登出
+    canonical_zh_cn: 退出
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.7
+    context_required: true
+    notes: 「退出」在台灣 GUI 語境中亦使用，但「登出」更明確指 sign out。
+
+  - slug: signup-zhuce
+    canonical_zh_tw: 註冊
+    canonical_zh_cn: 注册
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.2
+    notes: 簡繁差為主，兩岸用法一致。
+
+  - slug: online-zaixian
+    canonical_zh_tw: 線上
+    canonical_zh_cn: 在线
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.85
+    notes: 「線上付款／線上課程」vs「在線支付／在線課程」是典型分歧。
+
+  - slug: offline-lixian
+    canonical_zh_tw: 離線
+    canonical_zh_cn: 离线
+    type: same_meaning_diff_name
+    categories: [it]
+    confidence: 0.3
+    notes: 簡繁差為主，兩岸用法一致。
+
+  - slug: pay-pal-zhifubao
+    canonical_zh_tw: （無對應，中國行動支付）
+    canonical_zh_cn: 支付宝
+    type: cn_only
+    categories: [it, business]
+    confidence: 1.0
+
+  - slug: gaode
+    canonical_zh_tw: （無對應，中國地圖服務）
+    canonical_zh_cn: 高德地图
+    type: cn_only
+    categories: [it]
+    confidence: 1.0
+
 # ============ 日常生活類 ============
   - slug: greeting-good-evening
     canonical_zh_tw: 晚安
@@ -254,6 +560,382 @@ terms:
     confidence: 1.0
     notes: 中國特定社群平台名稱，無對應「同實異名」。
 
+  - slug: involution-neijuan
+    canonical_zh_tw: （無精準對應，常譯內捲）
+    canonical_zh_cn: 内卷
+    type: cn_only
+    categories: [internet-slang, business]
+    confidence: 0.95
+    notes: |
+      源自人類學「involution」，中國網路引申為非理性的過度競爭。
+      台灣媒體近年亦引用，但仍視為中國語境輸入詞。
+
+  - slug: lying-flat-tangping
+    canonical_zh_tw: （無精準對應，常譯躺平）
+    canonical_zh_cn: 躺平
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 中國青年世代對「內捲」的消極回應；台灣引用時通常帶引號。
+
+  - slug: vpn-fanqiang
+    canonical_zh_tw: 翻牆
+    canonical_zh_cn: 翻墙
+    type: same_meaning_diff_name
+    categories: [internet-slang, politics]
+    confidence: 0.9
+    notes: 中國語境特有，指繞過 GFW 連外網。台灣亦使用但情境多在討論中國時。
+
+  - slug: like-dianzan
+    canonical_zh_tw: 按讚
+    canonical_zh_cn: 点赞
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.95
+
+  - slug: dm-sixin
+    canonical_zh_tw: 私訊
+    canonical_zh_cn: 私信
+    type: same_meaning_diff_name
+    categories: [internet-slang, it]
+    confidence: 0.85
+
+  - slug: sticker-biaoqingbao
+    canonical_zh_tw: 貼圖
+    canonical_zh_cn: 表情包
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.85
+    notes: LINE 語境下台灣稱「貼圖」；微信／表情包文化多用「表情包」。
+
+  - slug: faceplant-fanche
+    canonical_zh_tw: 出包／翻車
+    canonical_zh_cn: 翻车
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.8
+    notes: 中國網路用語，指企劃／直播／預測失敗；台灣亦逐漸通用。
+
+  - slug: slap-face-dalian
+    canonical_zh_tw: 打臉
+    canonical_zh_cn: 打脸
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.5
+    notes: 起源於中國網路，台灣已普遍使用。
+
+  - slug: dark-history-heilishi
+    canonical_zh_tw: 黑歷史
+    canonical_zh_cn: 黑历史
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.5
+    notes: 起源於日本／中國 ACG 圈，現兩岸通用。
+
+  - slug: shadiao
+    canonical_zh_tw: （無對應，戲謔形容詞）
+    canonical_zh_cn: 沙雕
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 中國網路自嘲用語，源自髒話的諧音替代。
+
+  - slug: slack-off-moyu
+    canonical_zh_tw: 打混／摸魚
+    canonical_zh_cn: 摸鱼
+    type: same_meaning_diff_name
+    categories: [internet-slang, business]
+    confidence: 0.6
+    notes: 「摸魚」在台灣亦使用；近年中國「上班摸魚」討論度高。
+
+  - slug: versailles-fanersai
+    canonical_zh_tw: （無對應，凡爾賽文學）
+    canonical_zh_cn: 凡尔赛
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 中國網路衍生詞「凡爾賽文學」，指低調炫耀的修辭。
+
+  - slug: old-driver-laosiji
+    canonical_zh_tw: （無對應，老手／引路人）
+    canonical_zh_cn: 老司机
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.9
+    notes: 中國網路用語，泛指某領域熟手，常帶 18+ 暗示。
+
+  - slug: big-shot-dalao
+    canonical_zh_tw: 大大／大神
+    canonical_zh_cn: 大佬
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.85
+
+  - slug: yyds
+    canonical_zh_tw: （無對應，永遠的神）
+    canonical_zh_cn: yyds
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 「永遠的神」拼音縮寫，中國網路推崇用語。
+
+  - slug: zhongcao
+    canonical_zh_tw: 推坑
+    canonical_zh_cn: 种草
+    type: same_meaning_diff_name
+    categories: [internet-slang, business]
+    confidence: 0.9
+    notes: 小紅書／電商語境的「推薦使人想買」；台灣對應「推坑」。
+
+  - slug: yanzhi
+    canonical_zh_tw: 顏值
+    canonical_zh_cn: 颜值
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.3
+    notes: 起源於中國，現兩岸通用。
+
+  - slug: live-commerce-daihuo
+    canonical_zh_tw: 直播帶貨
+    canonical_zh_cn: 带货
+    type: same_meaning_diff_name
+    categories: [internet-slang, business]
+    confidence: 0.9
+
+  - slug: down-to-earth-jiediqi
+    canonical_zh_tw: 親民／接地氣
+    canonical_zh_cn: 接地气
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.6
+    notes: 起源於中國，台灣媒體已大量使用。
+
+  - slug: chuquan
+    canonical_zh_tw: （無對應，跨界爆紅）
+    canonical_zh_cn: 出圈
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 中國娛樂／行銷語，指原本小眾話題走向大眾。
+
+  - slug: chigua
+    canonical_zh_tw: 看戲
+    canonical_zh_cn: 吃瓜
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.85
+    notes: 中國網路用語「吃瓜群眾」（旁觀者）流傳廣。
+
+  - slug: open-cheat-kaigua
+    canonical_zh_tw: 開外掛
+    canonical_zh_cn: 开挂
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.8
+
+  - slug: floor-host-louzhu
+    canonical_zh_tw: 樓主／原 PO
+    canonical_zh_cn: 楼主
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.85
+    notes: 「樓主」在 PTT／巴哈圈亦使用；中國論壇起源。
+
+  - slug: keyboard-warrior-jianpanxia
+    canonical_zh_tw: 鍵盤俠／酸民
+    canonical_zh_cn: 键盘侠
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.7
+    notes: 起源於中國，台灣亦使用。
+
+  - slug: fifty-cent-wumao
+    canonical_zh_tw: （無對應，中國網軍）
+    canonical_zh_cn: 五毛
+    type: cn_only
+    categories: [internet-slang, politics]
+    confidence: 1.0
+    notes: 中國官方／民間僱用的網路評論員，每則回報報酬約五毛人民幣得名。
+
+  - slug: water-army-shuijun
+    canonical_zh_tw: 網軍
+    canonical_zh_cn: 水军
+    type: same_meaning_diff_name
+    categories: [internet-slang, politics]
+    confidence: 0.85
+
+  - slug: chives-jiucai
+    canonical_zh_tw: 韭菜（被收割的散戶）
+    canonical_zh_cn: 韭菜
+    type: same_meaning_diff_name
+    categories: [internet-slang, business]
+    confidence: 0.85
+    notes: 中國股市／投資圈用語，被反覆收割的散戶。
+
+  - slug: spew-pen
+    canonical_zh_tw: 噹／嘴／罵
+    canonical_zh_cn: 喷
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.85
+    context_required: true
+    notes: 「噴」在中國網路指惡意言語攻擊；台灣「噴」多為字面義或讚嘆。
+
+  - slug: recommend-anli
+    canonical_zh_tw: 推坑／推薦
+    canonical_zh_cn: 安利
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.9
+    notes: 中國網路用語，源於 Amway（安利）直銷文化的引申。
+
+  - slug: zouxin
+    canonical_zh_tw: 用心／走心
+    canonical_zh_cn: 走心
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.7
+    notes: 中國用「走心」表「用心」；台灣「走心」傳統意思反為「分心／介意」。
+
+  - slug: official-announce-guanxuan
+    canonical_zh_tw: 官方宣布
+    canonical_zh_cn: 官宣
+    type: same_meaning_diff_name
+    categories: [internet-slang, media]
+    confidence: 0.85
+    notes: 中國娛樂圈／品牌圈用語，多用於公布戀情、合作、新品。
+
+  - slug: self-media-zimeiti
+    canonical_zh_tw: 個人媒體／內容創作者
+    canonical_zh_cn: 自媒体
+    type: same_meaning_diff_name
+    categories: [internet-slang, media, business]
+    confidence: 0.85
+
+  - slug: trending-resou
+    canonical_zh_tw: 熱搜
+    canonical_zh_cn: 热搜
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.5
+    notes: 起源於微博熱搜榜，現兩岸通用。
+
+  - slug: details-horror-xisijike
+    canonical_zh_tw: （無對應，越想越恐怖）
+    canonical_zh_cn: 细思极恐
+    type: cn_only
+    categories: [internet-slang]
+    confidence: 0.95
+    notes: 「細想極恐」的縮略，中國網路四字流行語。
+
+  - slug: wechat-merchant-weishang
+    canonical_zh_tw: （無對應，微信賣家）
+    canonical_zh_cn: 微商
+    type: cn_only
+    categories: [internet-slang, business]
+    confidence: 1.0
+
+  - slug: ad-content-ruanwen
+    canonical_zh_tw: 業配文／葉佩雯
+    canonical_zh_cn: 软文
+    type: same_meaning_diff_name
+    categories: [internet-slang, business, media]
+    confidence: 0.9
+    notes: 「業配文」是台灣常見對應；「葉佩雯」為網路諧音玩法。
+
+  - slug: zhihu
+    canonical_zh_tw: （無對應，中國問答社群）
+    canonical_zh_cn: 知乎
+    type: cn_only
+    categories: [internet-slang, it]
+    confidence: 1.0
+
+  - slug: bilibili
+    canonical_zh_tw: （無對應，中國 ACG 影音平台）
+    canonical_zh_cn: 哔哩哔哩
+    type: cn_only
+    categories: [internet-slang, media]
+    confidence: 1.0
+    notes: 又稱「B 站」，類似 NICONICO 文化的中國影音平台。
+
+  - slug: good-morning
+    canonical_zh_tw: 早安
+    canonical_zh_cn: 早上好
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.8
+    context_required: true
+    notes: 中國的入夜／清晨問候習慣為「上午好／晚上好」，台灣多用「早安／晚安」。
+
+  - slug: photocopy-fuyin
+    canonical_zh_tw: 影印
+    canonical_zh_cn: 复印
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.95
+
+  - slug: aircon-kongtiao
+    canonical_zh_tw: 冷氣
+    canonical_zh_cn: 空调
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.85
+    notes: 台灣口語「冷氣」泛指冷氣機；「空調」涵蓋冷暖通用，台灣工程界亦用。
+
+  - slug: good-afternoon
+    canonical_zh_tw: 午安
+    canonical_zh_cn: 下午好
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.85
+    context_required: true
+
+  - slug: sunglasses-mojing
+    canonical_zh_tw: 太陽眼鏡
+    canonical_zh_cn: 墨镜
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.9
+
+  - slug: building-dasha
+    canonical_zh_tw: 大樓
+    canonical_zh_cn: 大厦
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.6
+    notes: 「大廈」在台灣亦使用，多指特定地標型建築。
+
+  - slug: waiter-fuwuyuan
+    canonical_zh_tw: 服務生
+    canonical_zh_cn: 服务员
+    type: same_meaning_diff_name
+    categories: [daily-life, business]
+    confidence: 0.9
+
+  - slug: boss-laoban
+    canonical_zh_tw: 老闆
+    canonical_zh_cn: 老板
+    type: same_meaning_diff_name
+    categories: [daily-life, business]
+    confidence: 0.4
+    notes: 簡繁差為主；「闆」字在中國簡體中已不使用。
+
+  - slug: smart-zhineng
+    canonical_zh_tw: 智慧型
+    canonical_zh_cn: 智能
+    type: same_meaning_diff_name
+    categories: [daily-life, it]
+    confidence: 0.9
+    notes: 「smart」的兩岸譯法分水嶺，廣泛影響各類產品命名。
+
+  - slug: tissue-zhijin
+    canonical_zh_tw: 面紙／衛生紙
+    canonical_zh_cn: 纸巾
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.8
+    notes: 台灣區分「衛生紙」（廁所用）與「面紙」（盒裝），中國「紙巾」較通用。
+
 # ============ 飲食類 ============
   - slug: potato-tudou
     canonical_zh_tw: 馬鈴薯
@@ -287,6 +969,91 @@ terms:
     categories: [food]
     confidence: 0.9
 
+  - slug: tomato-xihongshi
+    canonical_zh_tw: 番茄
+    canonical_zh_cn: 西红柿
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.9
+    notes: 中國北方多用「西紅柿」，南方亦用「番茄」；台灣統一用番茄。
+
+  - slug: kiwi-mihoutao
+    canonical_zh_tw: 奇異果
+    canonical_zh_cn: 猕猴桃
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+
+  - slug: yogurt-suannai
+    canonical_zh_tw: 優酪乳
+    canonical_zh_cn: 酸奶
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.85
+    notes: 台灣亦稱優格（固態），優酪乳常指可飲用形態。
+
+  - slug: tuna-jinqiangyu
+    canonical_zh_tw: 鮪魚
+    canonical_zh_cn: 金枪鱼
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+
+  - slug: cabbage-juanxincai
+    canonical_zh_tw: 高麗菜
+    canonical_zh_cn: 卷心菜
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+    notes: 中國亦稱「包心菜」「圓白菜」；台灣統一「高麗菜」。
+
+  - slug: carrot-huluobo
+    canonical_zh_tw: 紅蘿蔔
+    canonical_zh_cn: 胡萝卜
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.85
+    notes: 台灣口語「紅蘿蔔」「胡蘿蔔」並用，前者較台灣慣用。
+
+  - slug: spaghetti-yidalimian
+    canonical_zh_tw: 義大利麵
+    canonical_zh_cn: 意大利面
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+    notes: 「義」vs「意」是國名譯字的兩岸分歧（義大利 vs 意大利）。
+
+  - slug: cheese-nailao
+    canonical_zh_tw: 起司
+    canonical_zh_cn: 奶酪
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.85
+    notes: 中國亦受港譯影響稱「芝士」；「奶酪」在台灣常指類布丁甜點，屬同名異實。
+
+  - slug: sweet-potato-hongshu
+    canonical_zh_tw: 地瓜／番薯
+    canonical_zh_cn: 红薯
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.7
+    notes: 台灣「地瓜」「番薯」並用；中國「紅薯」「番薯」較常見。
+
+  - slug: waffle-huafubing
+    canonical_zh_tw: 鬆餅
+    canonical_zh_cn: 华夫饼
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.9
+    notes: 嚴格說「鬆餅」涵蓋 waffle / pancake，中國「華夫餅」專指 waffle。
+
+  - slug: broccoli-xilanhua
+    canonical_zh_tw: 青花菜／花椰菜
+    canonical_zh_cn: 西兰花
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.95
+
 # ============ 交通類 ============
   - slug: bus-gongjiao
     canonical_zh_tw: 公車
@@ -319,6 +1086,59 @@ terms:
     categories: [transport]
     confidence: 0.95
 
+  - slug: hsr-gaotie
+    canonical_zh_tw: 高鐵
+    canonical_zh_cn: 高铁
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.6
+    notes: 中國「高鐵」指中國鐵路系統高速線；台灣「高鐵」指台灣高鐵公司。詞同義近，但所指系統不同。
+
+  - slug: bike-zixingche
+    canonical_zh_tw: 腳踏車
+    canonical_zh_cn: 自行车
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.5
+    notes: 台灣「自行車」亦通用，特別在運動／公路車語境。
+
+  - slug: flight-hangban
+    canonical_zh_tw: 班機
+    canonical_zh_cn: 航班
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.6
+    notes: 「航班」在台灣亦使用，特別在航空公司公告。
+
+  - slug: terminal-hangzhanlou
+    canonical_zh_tw: 航廈
+    canonical_zh_cn: 航站楼
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.95
+
+  - slug: boarding-lounge-houjiting
+    canonical_zh_tw: 候機室
+    canonical_zh_cn: 候机厅
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.9
+
+  - slug: rest-area-fuwuqu
+    canonical_zh_tw: 服務區
+    canonical_zh_cn: 服务区
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.3
+    notes: 簡繁差為主，兩岸用語接近。
+
+  - slug: bus-stop-gongjiaozhan
+    canonical_zh_tw: 公車站
+    canonical_zh_cn: 公交站
+    type: same_meaning_diff_name
+    categories: [transport]
+    confidence: 0.9
+
 # ============ 影視娛樂 ============
   - slug: anime-dongman
     canonical_zh_tw: 動畫／動漫
@@ -341,6 +1161,100 @@ terms:
     type: same_meaning_diff_name
     categories: [daily-life]
     confidence: 0.1
+
+  - slug: tv-series-dianshiju
+    canonical_zh_tw: 連續劇
+    canonical_zh_cn: 电视剧
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.7
+    notes: 「電視劇」在台灣亦廣泛使用，並非純粹支語。
+
+  - slug: showbiz-yulequan
+    canonical_zh_tw: 演藝圈
+    canonical_zh_cn: 娱乐圈
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.85
+
+  - slug: cinema-dianyingyuan
+    canonical_zh_tw: 戲院
+    canonical_zh_cn: 电影院
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.4
+    notes: 「電影院」在台灣亦廣泛使用。
+
+  - slug: blockbuster-dapian
+    canonical_zh_tw: 強檔大片／話題作
+    canonical_zh_cn: 大片
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.7
+    notes: 「大片」在中國指好萊塢級話題作品；台灣用語較不直接。
+
+  - slug: god-tier-drama-shenju
+    canonical_zh_tw: 神劇
+    canonical_zh_cn: 神剧
+    type: same_meaning_diff_name
+    categories: [media, internet-slang]
+    confidence: 0.5
+    notes: 兩岸均使用，但中國「抗日神劇」是特定亞類。
+
+  - slug: extra-actor-qunyan
+    canonical_zh_tw: 臨時演員／臨演
+    canonical_zh_cn: 群演
+    type: same_meaning_diff_name
+    categories: [media]
+    confidence: 0.9
+
+  - slug: subtitle-group-zimuzu
+    canonical_zh_tw: （無對應）
+    canonical_zh_cn: 字幕组
+    type: cn_only
+    categories: [media]
+    confidence: 0.95
+    notes: 中國非官方字幕翻譯團隊文化，常處於版權灰色地帶。
+
+  - slug: danmaku
+    canonical_zh_tw: 彈幕
+    canonical_zh_cn: 弹幕
+    type: same_meaning_diff_name
+    categories: [media, internet-slang]
+    confidence: 0.4
+    notes: 起源於 NICONICO 與 bilibili，現兩岸 ACG 圈通用。
+
+  - slug: streamer-zhubo
+    canonical_zh_tw: 直播主
+    canonical_zh_cn: 主播
+    type: same_meaning_diff_name
+    categories: [media, internet-slang]
+    confidence: 0.85
+    context_required: true
+    notes: 「主播」在台灣傳統上指新聞主播，中國網路語境下指直播主。
+
+  - slug: upmaster-upzhu
+    canonical_zh_tw: （無對應，影音創作者）
+    canonical_zh_cn: UP主
+    type: cn_only
+    categories: [media, internet-slang]
+    confidence: 0.95
+    notes: bilibili 用語，類似 YouTuber／創作者。
+
+  - slug: skit-duanzi
+    canonical_zh_tw: 笑話／哏
+    canonical_zh_cn: 段子
+    type: same_meaning_diff_name
+    categories: [media, internet-slang]
+    confidence: 0.9
+
+  - slug: cheer-yingyuan
+    canonical_zh_tw: 應援
+    canonical_zh_cn: 应援
+    type: same_meaning_diff_name
+    categories: [media, internet-slang]
+    confidence: 0.2
+    notes: 源自韓國／日本偶像文化，現兩岸通用，簡繁差為主。
 
 # ============ 商業 / 金融 ============
   - slug: optimize-youhua
@@ -369,6 +1283,74 @@ terms:
       中國科技業近年用「優化」做為「裁員」的委婉說法，屬於語意污染案例。
       在「員工優化」「人員優化」等上下文中應警示。
 
+  - slug: channel-qudao
+    canonical_zh_tw: 通路
+    canonical_zh_cn: 渠道
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.9
+    notes: 商業／行銷語境下的 sales channel；台灣亦用「銷售通路」。
+
+  - slug: resume-jianli
+    canonical_zh_tw: 履歷
+    canonical_zh_cn: 简历
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.95
+
+  - slug: marketing-yingxiao
+    canonical_zh_tw: 行銷
+    canonical_zh_cn: 营销
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.95
+
+  - slug: crowdfunding-zhongchou
+    canonical_zh_tw: 群眾募資
+    canonical_zh_cn: 众筹
+    type: same_meaning_diff_name
+    categories: [business, it]
+    confidence: 0.95
+
+  - slug: sales-rep-xiaoshou
+    canonical_zh_tw: 業務／業務員
+    canonical_zh_cn: 销售
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.8
+    context_required: true
+    notes: 「業務」在中國指 business／業務範圍；台灣口語「業務」可直接指 sales rep。
+
+  - slug: freelance-jiehuo
+    canonical_zh_tw: 接案
+    canonical_zh_cn: 接活
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.9
+
+  - slug: year-end-bonus-nianzhongjiang
+    canonical_zh_tw: 年終獎金
+    canonical_zh_cn: 年终奖
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.6
+    notes: 兩岸均使用，差異不大；中國較常簡稱「年終獎」。
+
+  - slug: dealer-jingxiaoshang
+    canonical_zh_tw: 代理商／經銷商
+    canonical_zh_cn: 经销商
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.3
+    notes: 兩岸用法接近，差異不顯著。
+
+  - slug: real-estate-loupan
+    canonical_zh_tw: 建案
+    canonical_zh_cn: 楼盘
+    type: same_meaning_diff_name
+    categories: [business]
+    confidence: 0.95
+
 # ============ 學術 / 教育 ============
   - slug: campus-bully
     canonical_zh_tw: （無對應慣用詞）
@@ -385,6 +1367,62 @@ terms:
     categories: [academic, internet-slang]
     confidence: 0.5
     notes: 兩岸都用，但起源於中國。
+
+  - slug: junior-high-chuzhong
+    canonical_zh_tw: 國中
+    canonical_zh_cn: 初中
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.95
+
+  - slug: primary-school-xiaoxue
+    canonical_zh_tw: 國小
+    canonical_zh_cn: 小学
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.85
+    notes: 「小學」在台灣亦通用，「國小」為正式名稱。
+
+  - slug: college-entrance-gaokao
+    canonical_zh_tw: 大學聯考／學測
+    canonical_zh_cn: 高考
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.9
+    context_required: true
+    notes: 「高考」在中國指普通高等學校招生全國統一考試；台灣現行為「學測＋分科測驗」。
+
+  - slug: undergraduate-benke
+    canonical_zh_tw: 大學部
+    canonical_zh_cn: 本科
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.95
+
+  - slug: cram-school-peixunban
+    canonical_zh_tw: 補習班
+    canonical_zh_cn: 培训班
+    type: same_meaning_diff_name
+    categories: [academic, business]
+    confidence: 0.7
+    notes: 「培訓班」在台灣亦使用，多指企業內訓；「補習班」較常指升學補習。
+
+  - slug: graduate-school-yanjiushengyuan
+    canonical_zh_tw: 研究所
+    canonical_zh_cn: 研究生院
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.9
+    context_required: true
+    notes: 「研究所」在中國指 research institute；台灣指 graduate school，屬同名異實。
+
+  - slug: textbook-keben
+    canonical_zh_tw: 課本／教科書
+    canonical_zh_cn: 课本
+    type: same_meaning_diff_name
+    categories: [academic]
+    confidence: 0.2
+    notes: 兩岸都用「課本」，差異甚小，列於詞庫供完整性。
 
 # ============ 政治 / 制度（敏感） ============
   - slug: hukou
@@ -403,6 +1441,140 @@ terms:
     categories: [politics]
     confidence: 1.0
     notes: 中國特有的城市管理執法人員。
+
+  - slug: gonganbu
+    canonical_zh_tw: （無對應，台灣稱警察）
+    canonical_zh_cn: 公安
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 中國公安系統，相當於台灣警察＋部分情治職能。
+
+  - slug: weiwen
+    canonical_zh_tw: （無對應）
+    canonical_zh_cn: 维稳
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 「維護社會穩定」的中國政治術語，常涉及壓制異議。
+
+  - slug: residents-committee-juweihui
+    canonical_zh_tw: （無對應）
+    canonical_zh_cn: 居委会
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 中國基層群眾自治組織「居民委員會」。
+
+  - slug: street-office-jiedaoban
+    canonical_zh_tw: （無對應）
+    canonical_zh_cn: 街道办
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 中國市轄區政府的派出機關「街道辦事處」。
+
+  - slug: youth-league-gongqingtuan
+    canonical_zh_tw: （無對應）
+    canonical_zh_cn: 共青团
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 中國共產主義青年團，中共下轄青年組織。
+
+  - slug: comrade-tongzhi
+    canonical_zh_tw: 同志（LGBTQ）
+    canonical_zh_cn: 同志
+    type: same_name_diff_meaning
+    categories: [politics, daily-life]
+    confidence: 0.95
+    context_required: true
+    notes: |
+      經典同名異實：中國黨內／社會主義語境下指「同伴」，台灣／港 1990s 後指 LGBTQ。
+      偵測時必須結合上下文。
+
+  - slug: armed-police-wujing
+    canonical_zh_tw: （無對應，近似憲兵）
+    canonical_zh_cn: 武警
+    type: cn_only
+    categories: [politics]
+    confidence: 1.0
+    notes: 中國人民武裝警察部隊，職能涵蓋國內治安與邊防。
+
+  - slug: leader-lingdao
+    canonical_zh_tw: 主管／上級
+    canonical_zh_cn: 领导
+    type: same_meaning_diff_name
+    categories: [politics, business]
+    confidence: 0.75
+    context_required: true
+    notes: 中國職場／黨政語境下「領導」指上級或長官；台灣多用「主管／長官／老闆」。
+
+# ============ 體育 ============
+  - slug: table-tennis-pingpang
+    canonical_zh_tw: 桌球
+    canonical_zh_cn: 乒乓球
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+
+  - slug: billiards-taiqiu
+    canonical_zh_tw: 撞球
+    canonical_zh_cn: 台球
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+    notes: 「台球」在台灣易被誤解為「桌球」，宜改稱撞球。
+
+  - slug: weight-training
+    canonical_zh_tw: 重訓
+    canonical_zh_cn: 力量训练
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.8
+
+  - slug: freestyle-swim
+    canonical_zh_tw: 自由式
+    canonical_zh_cn: 自由泳
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+
+  - slug: breaststroke
+    canonical_zh_tw: 蛙式
+    canonical_zh_cn: 蛙泳
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+
+  - slug: backstroke
+    canonical_zh_tw: 仰式
+    canonical_zh_cn: 仰泳
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+
+  - slug: butterfly-stroke
+    canonical_zh_tw: 蝶式
+    canonical_zh_cn: 蝶泳
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.95
+
+  - slug: stretch-lashen
+    canonical_zh_tw: 拉筋
+    canonical_zh_cn: 拉伸
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.85
+
+  - slug: marathon-paobu
+    canonical_zh_tw: 路跑／長跑
+    canonical_zh_cn: 跑步
+    type: same_meaning_diff_name
+    categories: [sports]
+    confidence: 0.2
+    notes: 「跑步」兩岸通用；「路跑」為台灣賽事文化用語。列於詞庫供完整性。
 
 # ============ Sources（內嵌示例，未來分離到 sources.yaml） ============
 sources:
