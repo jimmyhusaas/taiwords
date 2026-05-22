@@ -36,6 +36,10 @@ dependencies {
     // ─── YAML 解析（用於 SeedLoader） ─────────────────────────
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml")
 
+    // ─── 簡繁字符轉換（DetectionService 同時掃描簡繁兩版本 needle） ─
+    // 用 s2t 字符級轉換，不做詞彙台灣化（避免「视频」→「影片」破壞偵測）
+    implementation("com.github.houbb:opencc4j:1.8.1")
+
     // ─── 開發期工具 ───────────────────────────────────────────
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
