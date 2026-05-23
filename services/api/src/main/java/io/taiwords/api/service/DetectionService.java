@@ -37,7 +37,7 @@ public class DetectionService {
 
     public DetectionService(
             TermRepository termRepository,
-            @Value("${taiwords.detection.default-min-confidence:0.5}") float defaultMinConfidence) {
+            @Value("${taiwords.detection.default-min-confidence:0.7}") float defaultMinConfidence) {
         this.termRepository = termRepository;
         this.defaultMinConfidence = defaultMinConfidence;
     }
