@@ -15,7 +15,7 @@
 
 ## 1. Phase 切割
 
-### Phase 0 — 規劃（**目前所在階段**）
+### Phase 0 — 規劃（**完成**）
 **目標**：架構文件、資料 schema、種子詞庫，能說清楚要做什麼。
 
 - [x] 寫 README
@@ -23,26 +23,30 @@
 - [x] 資料 schema（`docs/02-data-schema.md`）
 - [x] Roadmap（本文件）
 - [x] 資料來源盤點（`docs/04-data-sources.md`）
-- [x] 種子詞庫 v0（`data/seed/terms.yaml`）
-- [ ] 建立 GitHub repo、加 LICENSE / CONTRIBUTING
+- [x] 種子詞庫 v1（`data/seed/terms.yaml`，200 條跨 10 分類）
+- [x] 建立 GitHub repo、加 LICENSE（MIT）
+- [ ] `CONTRIBUTING.md`（Phase 5 社群協作前補）
 
 **完成標準**：陌生人可以靠這些文件，理解專案要做什麼、為什麼這樣做、怎麼開始貢獻。
 
 ---
 
-### Phase 1 — 後端 MVP（4–6 週）
+### Phase 1 — 後端 MVP（**目前所在階段，主要工作完成**）
 **目標**：可以用 `curl` 把一段文字打進 API，回傳偵測結果。
 
 #### 工程任務
-- [ ] Monorepo 初始化（`apps/` + `services/` + `data/`）
-- [ ] Spring Boot 3 + Java 21 專案（`services/api`）
-  - [ ] Flyway migration（建表 + 種子資料載入）
-  - [ ] `GET /api/v1/terms` 列表、`GET /api/v1/terms/{slug}` 詳情
-  - [ ] `POST /api/v1/detect`（先做精確比對版本，不接 NLP service）
-  - [ ] OpenAPI（Springdoc）自動文件
-- [ ] Dockerfile + docker-compose（含 Postgres 17）
-- [ ] 單元測試覆蓋率 ≥ 60%（重點：偵測引擎、邊界字元、繁簡輸入）
-- [ ] GitHub Actions：build + test + Docker image push（GHCR）
+- [x] Monorepo 初始化（`services/` + `data/`；`apps/` 留待 Phase 2/3）
+- [x] Spring Boot 3 + Java 21 專案（`services/api`）
+  - [x] Flyway migration（`V1__init_schema.sql` 建表；種子資料由 `SeedLoader` 啟動時 upsert YAML）
+  - [x] `GET /api/v1/terms` 列表、`GET /api/v1/terms/{slug}` 詳情、`GET /api/v1/categories`
+  - [x] `POST /api/v1/detect`（OpenCC4J t2s 正規化 + long-to-short 字串掃描）
+  - [x] OpenAPI（Springdoc）自動文件
+- [x] Dockerfile + docker-compose（含 Postgres 17）
+- [x] 單元測試覆蓋率 ≥ 60%（核心 `DetectionService` 13 個 case 涵蓋繁簡輸入／邊界／長詞優先；
+      `DetectionIntegrationTest` 用 Zonky EmbeddedPostgres 跑 7 個 e2e case；
+      尚未跑 jacoco 量化數字，controllers 待補測試）
+- [x] GitHub Actions：build + test（包含整合測試）
+- [x] GitHub Actions：Docker image push（GHCR）— push 到 main 時推 `ghcr.io/<owner>/taiwords-api:{latest, <sha>}`
 
 #### Demo 標準
 ```bash
@@ -173,7 +177,11 @@ curl -X POST localhost:8080/api/v1/detect \
 
 ## 5. 下一步（馬上能做的）
 
-1. 建 GitHub repo `zhch-detector`，把現有文件 push 上去
-2. 在 `services/api` 開 Spring Boot 骨架 + Flyway 第一份 migration
-3. 寫一條 GitHub Actions：PR build → `docker build`，先不部署
-4. 把種子詞庫從 YAML 寫成 Flyway `V1__seed_terms.sql`（或啟動時 loader）
+Phase 1 收尾 → Phase 2 推進：
+
+1. **Controller 層測試**：`TermController` / `DetectController` / `CategoryController` 目前只透過整合測試的服務層走過，需要 `@WebMvcTest` 補 request/response 行為驗證。Phase 1 唯一剩下的明顯缺口。
+2. **Phase 2 推進**：`apps/extension` WXT 骨架已建（右下角浮動按鈕 → 抓頁面文字 → 呼叫本地 detect API）。接下來：
+   - inline 標記（底線 + hover tooltip 顯示建議詞與信心度）
+   - popup 顯示本頁標記數與 `min_confidence` slider
+   - 白名單網域 + IndexedDB 快取
+3. **詞庫品質**：200 條中有 ~30 條 confidence 0.3–0.7 的「兩岸都用但中國較常用」詞，Phase 5 社群協作上線時引入 `review_status` 工作流校正。

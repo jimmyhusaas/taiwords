@@ -52,6 +52,13 @@ taiwords:
   seed:
     enabled: ${TAIWORDS_SEED_ENABLED:true}
     path: classpath:seed/
+  detection:
+    # 預設偵測信心度下限。詞庫中 confidence < 此值的詞條不會被掃描。
+    # 0.7 是經驗校準值：
+    #   - 拋掉「自行車 0.5 / 動漫 0.4 / 老板 0.4 / 開發者 0.3 / 顏值 0.3」這類兩岸通用詞
+    #   - 保留 168/200 條真有差異的詞（含「電視劇 0.7」「優化→裁員 0.7」這類灰色但有信號的）
+    # 使用者可在 POST /detect 的 options.minConfidence 個別調整。
+    default-min-confidence: ${TAIWORDS_DETECTION_MIN_CONFIDENCE:0.7}
 
 logging:
   level:
