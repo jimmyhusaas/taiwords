@@ -1,0 +1,13 @@
+# WXT generated
+.wxt/
+.output/
+
+# Dependencies
+node_modules/
+
+# Package manager lockfile lives at repo root if monorepo-managed; otherwise here.
+# pnpm-lock.yaml  (uncomment if you decide to not commit lockfile)
+
+# Editor
+.DS_Store
+*.log
