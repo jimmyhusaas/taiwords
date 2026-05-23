@@ -10,9 +10,5 @@ public record DetectRequest(
 
         DetectOptions options
 ) {
-    public DetectOptions optionsOrDefault() {
-        return options == null ? new DetectOptions(0.5f) : options;
-    }
-
     public record DetectOptions(Float minConfidence) {}
 }

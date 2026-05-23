@@ -21,7 +21,10 @@ public class DetectController {
 
     @PostMapping
     public DetectResponse detect(@Valid @RequestBody DetectRequest req) {
-        var opts = req.optionsOrDefault();
-        return detectionService.detect(req.text(), opts.minConfidence());
+        // options 為 null → 傳 null minConfidence，讓 DetectionService 套自己的
+        // taiwords.detection.default-min-confidence (application.yml 配置)。
+        // 不在 DTO 層 hardcode 數值，避免 default 在兩處不同步。
+        Float minConfidence = req.options() == null ? null : req.options().minConfidence();
+        return detectionService.detect(req.text(), minConfidence);
     }
 }
