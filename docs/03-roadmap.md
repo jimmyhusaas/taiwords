@@ -177,11 +177,11 @@ curl -X POST localhost:8080/api/v1/detect \
 
 ## 5. 下一步（馬上能做的）
 
-Phase 1 收尾 → Phase 2 推進：
+Phase 1 收尾完成，下面是 Phase 2 推進：
 
-1. **Controller 層測試**：`TermController` / `DetectController` / `CategoryController` 目前只透過整合測試的服務層走過，需要 `@WebMvcTest` 補 request/response 行為驗證。Phase 1 唯一剩下的明顯缺口。
-2. **Phase 2 推進**：`apps/extension` WXT 骨架已建（右下角浮動按鈕 → 抓頁面文字 → 呼叫本地 detect API）。接下來：
+1. **Phase 2 主軸**：`apps/extension` WXT 骨架已建（右下角浮動按鈕 → 抓頁面文字 → 呼叫本地 detect API）。接下來：
    - inline 標記（底線 + hover tooltip 顯示建議詞與信心度）
    - popup 顯示本頁標記數與 `min_confidence` slider
    - 白名單網域 + IndexedDB 快取
-3. **詞庫品質**：200 條中有 ~30 條 confidence 0.3–0.7 的「兩岸都用但中國較常用」詞，Phase 5 社群協作上線時引入 `review_status` 工作流校正。
+2. **詞庫品質**：200 條中有 ~30 條 confidence 0.3–0.7 的「兩岸都用但中國較常用」詞，Phase 5 社群協作上線時引入 `review_status` 工作流校正。
+3. **CI 覆蓋率量化**：跑 jacoco 把覆蓋率數字落地到 README badge，目前是估計值（核心 `DetectionService` 含整合測試覆蓋良好，但沒精確數字）。

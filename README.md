@@ -24,8 +24,10 @@
 | [docs/02-data-schema.md](docs/02-data-schema.md) | 圖鑑資料結構（詞條、類別、信心度） |
 | [docs/03-roadmap.md](docs/03-roadmap.md) | MVP 範圍、Phase 切割、里程碑 |
 | [docs/04-data-sources.md](docs/04-data-sources.md) | 開源資料清單與授權說明 |
+| [docs/05-quickstart.md](docs/05-quickstart.md) | 本地 5 分鐘起跑指南（含預期輸出） |
 | [services/api/README.md](services/api/README.md) | API 服務開發 / 部署說明 |
-| [data/seed/terms.yaml](data/seed/terms.yaml) | 種子詞庫 |
+| [apps/extension/README.md](apps/extension/README.md) | Chrome 擴充套件開發說明 |
+| [data/seed/terms.yaml](data/seed/terms.yaml) | 種子詞庫（200 條） |
 | [data/seed/categories.yaml](data/seed/categories.yaml) | 詞彙分類 |
 
 ## 專案結構
