@@ -59,6 +59,10 @@ taiwords:
     #   - 保留 168/200 條真有差異的詞（含「電視劇 0.7」「優化→裁員 0.7」這類灰色但有信號的）
     # 使用者可在 POST /detect 的 options.minConfidence 個別調整。
     default-min-confidence: ${TAIWORDS_DETECTION_MIN_CONFIDENCE:0.7}
+  cors:
+    # CORS 允許的 origin，逗號分隔。Phase 2 為了讓 Chrome extension 從任意網頁
+    # 跨域呼叫本地 API，預設 `*`。部署到 public URL 後建議收緊為具體 host。
+    allowed-origins: ${TAIWORDS_CORS_ALLOWED_ORIGINS:*}
 
 logging:
   level:
