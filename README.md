@@ -83,7 +83,7 @@ open http://localhost:8080/swagger-ui.html
 
 ## 為什麼這個專案
 
-- **語言文化保護**：日常用詞被悄悄替換是文化滲透的低成本入口
+- **語言主體性**：兩岸用語混用日漸普遍，工具讓使用者自己判斷取捨，而非被動接受
 - **技術練習**：多服務 polyglot 架構、Chrome Extension、NLP、Docker / K8s 完整鏈條
 - **可發表 portfolio**：開源 + 實用 + 議題性，能在求職時清楚展示能力
 
