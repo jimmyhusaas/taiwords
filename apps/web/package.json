@@ -1,0 +1,14 @@
+{
+  "name": "taiwords-web",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "TaiWords 靜態圖鑑 — 由 data/seed/*.yaml 產生可截圖分享的兩岸用語對照卡片",
+  "scripts": {
+    "build": "node generate.mjs",
+    "serve": "node generate.mjs && cd dist && python3 -m http.server 4173"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
