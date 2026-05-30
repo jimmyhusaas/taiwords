@@ -501,6 +501,14 @@ terms:
     categories: [it]
     confidence: 1.0
 
+  - slug: short-video-duanshipin
+    canonical_zh_tw: 短影音
+    canonical_zh_cn: 短视频
+    type: same_meaning_diff_name
+    categories: [media, it, internet-slang]
+    confidence: 0.9
+    notes: 「短視頻」隨抖音／快手文化輸入；台灣慣稱「短影音」。延伸自「視頻／影片」之別。
+
 # ============ 日常生活類 ============
   - slug: greeting-good-evening
     canonical_zh_tw: 晚安
@@ -936,6 +944,98 @@ terms:
     confidence: 0.8
     notes: 台灣區分「衛生紙」（廁所用）與「面紙」（盒裝），中國「紙巾」較通用。
 
+  - slug: bento-hefan
+    canonical_zh_tw: 便當
+    canonical_zh_cn: 盒饭
+    type: same_meaning_diff_name
+    categories: [daily-life, food]
+    confidence: 0.9
+    notes: 「便當」源自日語弁当，為台灣慣用；中國多稱「盒飯」。
+
+  - slug: security-guard-baoan
+    canonical_zh_tw: 保全
+    canonical_zh_cn: 保安
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.75
+    context_required: true
+    notes: 指大樓／社區警衛時，台灣用「保全」、中國用「保安」。但「保安」另有「保護安全」與廟名（保安宮）之義，須看上下文。
+
+  - slug: toilet-weishengjian
+    canonical_zh_tw: 廁所／洗手間
+    canonical_zh_cn: 卫生间
+    type: same_meaning_diff_name
+    categories: [daily-life]
+    confidence: 0.85
+    notes: 台灣用「廁所／洗手間／化妝室」；「衛生間」為中國用語。
+
+  - slug: immediately-lima
+    canonical_zh_tw: 立刻／馬上
+    canonical_zh_cn: 立马
+    type: same_meaning_diff_name
+    categories: [daily-life, internet-slang]
+    confidence: 0.7
+    context_required: true
+    notes: 「立馬」有古語用法（立馬可待），但現代口語「立馬＝立刻」帶中國語感，台灣慣用「立刻／馬上」。
+
+  - slug: mercedes-benz
+    canonical_zh_tw: 賓士
+    canonical_zh_cn: 奔驰
+    type: same_meaning_diff_name
+    categories: [daily-life, business]
+    confidence: 0.7
+    context_required: true
+    notes: 作為汽車品牌 Mercedes-Benz，台灣譯「賓士」、中國譯「奔馳」。但「奔馳」作動詞（疾馳、奔馳）兩岸通用，須看上下文。
+
+  - slug: close-friend-guimi
+    canonical_zh_tw: 好姊妹／手帕交
+    canonical_zh_cn: 闺蜜
+    type: same_meaning_diff_name
+    categories: [internet-slang, daily-life]
+    confidence: 0.3
+    notes: |
+      「閨蜜」源自古語「閨中密友」，近年經中國網路與影視普及，台灣亦廣泛使用，
+      難視為純粹支語。台灣口語另有「好姊妹／手帕交／死黨」。屬爭議詞，預設不標記。
+
+  - slug: caliber-suzhi
+    canonical_zh_tw: 水準／教養
+    canonical_zh_cn: 素质
+    type: same_name_diff_meaning
+    categories: [daily-life]
+    confidence: 0.5
+    context_required: true
+    notes: |
+      「素質」是台灣正常用詞（身體素質、素質佳）。僅當用來指人的「水準／教養／文明程度」
+      （如「這個人很沒素質」）時帶中國語感，台灣慣說「水準／教養」。須看上下文，屬爭議詞。
+
+  - slug: shocked-jingdai
+    canonical_zh_tw: 嚇到／傻眼
+    canonical_zh_cn: 惊呆
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.7
+    notes: 「驚呆」為中國網路用語；台灣慣說「嚇到／傻眼／嚇傻」。
+
+  - slug: super-tasty-juhaochi
+    canonical_zh_tw: 超好吃
+    canonical_zh_cn: 巨好吃
+    type: same_meaning_diff_name
+    categories: [internet-slang]
+    confidence: 0.75
+    notes: 以「巨」作程度副詞（巨好吃、巨大方）為中國網路用法；台灣慣用「超／爆／有夠」。
+
+  - slug: kindergarten-youeryuan
+    canonical_zh_tw: 幼兒園／幼稚園
+    canonical_zh_cn: 幼儿园
+    type: same_meaning_diff_name
+    categories: [daily-life, academic]
+    confidence: 0.15
+    context_required: true
+    notes: |
+      常被誤列為支語，實則相反：2012 年幼托整合後，「幼兒園」為台灣《幼兒教育及照顧法》
+      官方正式名稱，「幼稚園」為整合前舊稱，兩者皆通行於台灣。列於此處是為破除迷思，
+      預設不標記（confidence 極低）。
+
 # ============ 飲食類 ============
   - slug: potato-tudou
     canonical_zh_tw: 馬鈴薯
@@ -1053,6 +1153,16 @@ terms:
     type: same_meaning_diff_name
     categories: [food]
     confidence: 0.95
+
+  - slug: soy-sauce-shengchou
+    canonical_zh_tw: 醬油
+    canonical_zh_cn: 生抽
+    type: same_meaning_diff_name
+    categories: [food]
+    confidence: 0.85
+    notes: |
+      中國將醬油細分「生抽」（淡、調味）與「老抽」（濃、上色）；台灣統稱「醬油」，
+      另有「醬油膏」（濃稠帶甜），分類邏輯與生抽／老抽不同，非一對一對應。
 
 # ============ 交通類 ============
   - slug: bus-gongjiao
