@@ -440,8 +440,10 @@ const cardsHtml = `<!doctype html>
   const previewWrap = document.querySelector('.preview-wrap');
   const dlBtn = document.getElementById('download');
 
-  // QR 指向 repo（部署到 Vercel/GitHub Pages 後可改成圖鑑站 URL）
-  const QR_TARGET = 'https://github.com/jimmyhusaas/taiwords';
+  // QR 指向公開的 GitHub Pages 圖鑑。被部署到 jimmyhusaas.github.io/taiwords/
+  // 後，這就是分享出去的卡片回流的目的地（比 GitHub repo 對非工程觀眾友善）。
+  // 若改 custom domain 或部到 Vercel，把這一個常數改掉重 build 即可。
+  const QR_TARGET = 'https://jimmyhusaas.github.io/taiwords/';
 
   let state = { cat: data.categories[0]?.slug ?? '', ratio: '1x1', theme: 't-punch' };
 

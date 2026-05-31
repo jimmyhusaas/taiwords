@@ -3,9 +3,18 @@
 > **台詞**＝**台**灣慣用詞 × Tai**Words**。
 > 一個幫助你辨識中文文本中「疑似支語」並建議台灣慣用詞的工具：圖鑑 + 偵測器 + Chrome 擴充套件。
 
-[![CI](https://github.com/jimmyhu/taiwords/actions/workflows/ci.yml/badge.svg)](https://github.com/jimmyhu/taiwords/actions/workflows/ci.yml)
+[![CI](https://github.com/jimmyhusaas/taiwords/actions/workflows/ci.yml/badge.svg)](https://github.com/jimmyhusaas/taiwords/actions/workflows/ci.yml)
+[![Pages](https://github.com/jimmyhusaas/taiwords/actions/workflows/pages.yml/badge.svg)](https://github.com/jimmyhusaas/taiwords/actions/workflows/pages.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Data: CC-BY-SA-4.0](https://img.shields.io/badge/Data-CC--BY--SA--4.0-orange.svg)](docs/04-data-sources.md)
+
+## 線上 demo
+
+- **圖鑑**：<https://jimmyhusaas.github.io/taiwords/>（212 條詞彙，依分類瀏覽）
+- **卡片產生器**：<https://jimmyhusaas.github.io/taiwords/cards.html>（選分類匯出 PNG 給 Threads / IG）
+
+> Pages 由 `apps/web/generate.mjs` 從 `data/seed/*.yaml` 自動產生，每次 push 到 main 觸發
+> [`pages.yml`](.github/workflows/pages.yml) 重新部署。
 
 ---
 
