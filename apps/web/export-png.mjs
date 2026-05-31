@@ -14,11 +14,11 @@ const cardsUrl = 'file://' + resolve(__dirname, 'dist/cards.html');
 
 // 要產出的代表性樣本：分類 + 比例 + (可選) 信心度
 const samples = [
-  { cat: 'it', ratio: '1x1', conf: 0.7, n: 10, label: 'IT 軟體類' },
-  { cat: 'food', ratio: '1x1', conf: 0.7, n: 10, label: '飲食類' },
-  { cat: 'internet-slang', ratio: '1x1', conf: 0.7, n: 10, label: '網路流行語' },
-  { cat: 'daily-life', ratio: '4x5', conf: 0.7, n: 12, label: '日常生活 (4:5)' },
-  { cat: 'politics', ratio: '9x16', conf: 0.95, n: 8, label: '政治制度 (9:16 Stories)' },
+  { cat: 'it', ratio: '1x1', conf: 0.7, n: 10, theme: 't-punch', label: 'IT 1:1 爆款' },
+  { cat: 'food', ratio: '1x1', conf: 0.7, n: 10, theme: 't-light', label: '飲食 1:1 白底' },
+  { cat: 'internet-slang', ratio: '1x1', conf: 0.7, n: 10, theme: 't-mute', label: '網路流行語 1:1 低調' },
+  { cat: 'daily-life', ratio: '4x5', conf: 0.7, n: 12, theme: 't-punch', label: '日常 4:5 爆款' },
+  { cat: 'politics', ratio: '9x16', conf: 0.95, n: 8, theme: 't-punch', label: '政治 9:16 Stories' },
 ];
 
 const browser = await puppeteer.launch({
@@ -40,7 +40,8 @@ for (const s of samples) {
     document.getElementById('conf').dispatchEvent(new Event('input'));
     document.getElementById('n').value = String(s.n);
     document.getElementById('n').dispatchEvent(new Event('input'));
-    document.querySelector(`.ratio-btns button[data-ratio="${s.ratio}"]`).click();
+    document.querySelector(`.ratio-btns:not(#theme-btns) button[data-ratio="${s.ratio}"]`).click();
+    document.querySelector(`#theme-btns button[data-theme="${s.theme}"]`).click();
 
     // 把 #card 提到 viewport 左上角獨立顯示，避免被 panel/wrap 的 transform、
     // overflow:auto、grid 限制截圖。這樣 element.screenshot 拿到的就是純卡片。
@@ -54,10 +55,11 @@ for (const s of samples) {
     document.body.style.background = '#fff';
   }, s);
 
-  await new Promise((r) => setTimeout(r, 300));
+  // 等 QR canvas + layout 都穩定（QRCode.toCanvas 是 async callback）
+  await new Promise((r) => setTimeout(r, 800));
 
   const cardEl = await page.$('#card');
-  const path = resolve(__dirname, `dist/sample-${s.cat}-${s.ratio}.png`);
+  const path = resolve(__dirname, `dist/sample-${s.cat}-${s.ratio}-${s.theme}.png`);
   await cardEl.screenshot({ path, omitBackground: false });
   console.log(`✓ ${s.label} → ${path}`);
   await page.close();

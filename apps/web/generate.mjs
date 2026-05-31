@@ -226,6 +226,7 @@ const cardsHtml = `<!doctype html>
 <title>TaiWords 卡片產生器</title>
 <meta name="description" content="從 TaiWords 圖鑑挑一個分類，匯出可分享到 Threads / IG 的對照卡片 PNG。">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
   :root { --bg:#0f172a; --ink:#0f172a; --sub:#64748b; --line:#e2e8f0; --tw:#16a34a; --cn:#dc2626; }
   * { box-sizing:border-box; }
@@ -259,12 +260,25 @@ const cardsHtml = `<!doctype html>
   .preview-wrap { display:flex; justify-content:center; align-items:flex-start; padding:20px; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:auto; }
   .preview-scaler { transform-origin:top center; }
 
-  /* 卡片本身：實際 1080px 寬，內容 scaling 由 ratio 控 */
+  /* 卡片本身：實際 1080px 寬，主題以 CSS variable 切換，比例靠 height + 排版間距 */
   .card {
     width:1080px;
-    background:linear-gradient(160deg, #0f172a 0%, #1e293b 60%, #334155 100%);
-    color:#fff;
-    padding:64px 72px;
+    --c-bg: #0f172a;
+    --c-bg-gradient: linear-gradient(160deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+    --c-ink: #ffffff;
+    --c-sub: #94a3b8;
+    --c-foot: #cbd5e1;
+    --c-tw: #86efac;
+    --c-cn: #fca5a5;
+    --c-arrow: #64748b;
+    --c-accent: #fbbf24;
+    --c-brand-tag-bg: #ffffff;
+    --c-brand-tag-ink: #0f172a;
+    --c-glow: rgba(251,191,36,0.18);
+
+    background: var(--c-bg-gradient);
+    color: var(--c-ink);
+    padding:72px 80px;
     font-family:"PingFang TC","Noto Sans TC",system-ui,sans-serif;
     display:flex;
     flex-direction:column;
@@ -273,33 +287,82 @@ const cardsHtml = `<!doctype html>
     overflow:hidden;
   }
   .card::before {
-    content:""; position:absolute; top:-100px; right:-100px;
-    width:400px; height:400px; border-radius:50%;
-    background:radial-gradient(circle, rgba(251,191,36,0.15) 0%, transparent 70%);
+    content:""; position:absolute; top:-140px; right:-140px;
+    width:500px; height:500px; border-radius:50%;
+    background:radial-gradient(circle, var(--c-glow) 0%, transparent 70%);
+    pointer-events:none;
   }
-  .card .head { position:relative; z-index:1; margin-bottom:48px; }
-  .card .brand { font-size:28px; font-weight:700; display:flex; align-items:center; gap:12px; }
-  .card .brand .b-tag { font-size:18px; background:#fff; color:#0f172a; padding:4px 12px; border-radius:6px; }
-  .card .cat-name { margin-top:18px; font-size:64px; font-weight:800; letter-spacing:-1px; }
-  .card .title { margin-top:14px; font-size:30px; color:#fbbf24; font-weight:500; }
 
-  .card .list { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; gap:24px; justify-content:center; }
-  .card .item { display:flex; align-items:center; gap:24px; font-size:46px; font-weight:600; line-height:1.2; }
-  .card .item .arrow { color:#64748b; font-size:32px; font-weight:400; }
-  .card .item .tw { color:#86efac; display:flex; align-items:center; gap:14px; min-width:0; }
-  .card .item .cn { color:#fca5a5; text-decoration:line-through; text-decoration-color:rgba(252,165,165,0.5); display:flex; align-items:center; gap:14px; min-width:0; }
-  .card .item .check { font-size:38px; }
+  /* ── 主題 ─────────────────────────────────────────── */
+  /* t-punch：預設深色漸層，最像病毒貼文 */
+  .card.t-punch {
+    --c-bg-gradient: linear-gradient(160deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+    --c-ink:#ffffff; --c-sub:#94a3b8; --c-foot:#cbd5e1;
+    --c-tw:#86efac; --c-cn:#fca5a5; --c-arrow:#64748b;
+    --c-accent:#fbbf24;
+    --c-brand-tag-bg:#ffffff; --c-brand-tag-ink:#0f172a;
+    --c-glow: rgba(251,191,36,0.18);
+  }
+  /* t-light：白底備忘錄風，乾淨易讀 */
+  .card.t-light {
+    --c-bg-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    --c-ink:#0f172a; --c-sub:#64748b; --c-foot:#475569;
+    --c-tw:#15803d; --c-cn:#b91c1c; --c-arrow:#94a3b8;
+    --c-accent:#0f172a;
+    --c-brand-tag-bg:#0f172a; --c-brand-tag-ink:#ffffff;
+    --c-glow: rgba(15,23,42,0.06);
+  }
+  /* t-mute：米色文青低彩度 */
+  .card.t-mute {
+    --c-bg-gradient: linear-gradient(160deg, #fef7ed 0%, #fef3c7 50%, #fde68a 100%);
+    --c-ink:#1c1917; --c-sub:#78716c; --c-foot:#44403c;
+    --c-tw:#166534; --c-cn:#9a3412; --c-arrow:#a8a29e;
+    --c-accent:#7c2d12;
+    --c-brand-tag-bg:#1c1917; --c-brand-tag-ink:#fef7ed;
+    --c-glow: rgba(124,45,18,0.10);
+  }
 
-  .card .foot { position:relative; z-index:1; margin-top:48px; display:flex; justify-content:space-between; align-items:flex-end; font-size:22px; color:#94a3b8; }
-  .card .foot .site { font-weight:600; color:#cbd5e1; }
-  .card .foot .meta { font-size:18px; }
+  /* ── 卡片內部組件 ─────────────────────────────────── */
+  .card .head { position:relative; z-index:1; margin-bottom:56px; }
+  .card .brand { font-size:42px; font-weight:800; display:flex; align-items:center; gap:16px; letter-spacing:-0.5px; }
+  .card .brand .b-tag { font-size:26px; background:var(--c-brand-tag-bg); color:var(--c-brand-tag-ink); padding:6px 16px; border-radius:8px; font-weight:700; }
+  .card .cat-name { margin-top:24px; font-size:78px; font-weight:800; letter-spacing:-2px; line-height:1.05; }
+  .card .title { margin-top:18px; font-size:34px; color:var(--c-accent); font-weight:500; }
 
-  /* 比例：透過 padding 控制；1080 寬固定 */
+  .card .list { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; gap:28px; justify-content:center; }
+  .card .item { display:flex; align-items:center; gap:28px; font-size:48px; font-weight:600; line-height:1.2; }
+  .card .item .arrow { color:var(--c-arrow); font-size:34px; font-weight:400; }
+  .card .item .tw { color:var(--c-tw); display:flex; align-items:center; gap:16px; min-width:0; }
+  .card .item .cn { color:var(--c-cn); text-decoration:line-through; text-decoration-color:color-mix(in srgb, var(--c-cn) 50%, transparent); display:flex; align-items:center; gap:16px; min-width:0; }
+  .card .item .check { font-size:40px; }
+
+  /* ── 浮水印 / QR ───────────────────────────────────── */
+  .card .foot { position:relative; z-index:1; margin-top:56px; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }
+  .card .foot .info { display:flex; flex-direction:column; gap:8px; flex:1; min-width:0; }
+  .card .foot .site { font-size:28px; font-weight:700; color:var(--c-foot); }
+  .card .foot .meta { font-size:20px; color:var(--c-sub); }
+  .card .foot .qr-wrap { background:#fff; padding:14px; border-radius:14px; display:flex; flex-direction:column; align-items:center; gap:6px; box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+  .card .foot .qr-wrap canvas { display:block; image-rendering:pixelated; }
+  .card .foot .qr-wrap .scan-hint { font-size:14px; color:#0f172a; font-weight:600; }
+
+  /* ── 比例：1:1 / 4:5 / 9:16 ───────────────────────────
+     9:16 字級加大、間距撐開，避免高度多出來變空白。 */
   .card.r-1x1 { height:1080px; }
   .card.r-4x5 { height:1350px; }
-  .card.r-9x16 { height:1920px; }
-  .card.r-9x16 .list { gap:36px; }
-  .card.r-9x16 .item { font-size:54px; }
+  .card.r-9x16 {
+    height:1920px; padding:96px 96px;
+  }
+  .card.r-9x16 .cat-name { font-size:104px; }
+  .card.r-9x16 .title { font-size:44px; margin-top:24px; }
+  .card.r-9x16 .brand { font-size:54px; }
+  .card.r-9x16 .brand .b-tag { font-size:34px; padding:8px 20px; }
+  .card.r-9x16 .list { gap:44px; justify-content:space-around; }
+  .card.r-9x16 .item { font-size:60px; gap:36px; }
+  .card.r-9x16 .item .check { font-size:50px; }
+  .card.r-9x16 .item .arrow { font-size:42px; }
+  .card.r-9x16 .foot { margin-top:56px; }
+  .card.r-9x16 .foot .site { font-size:36px; }
+  .card.r-9x16 .foot .meta { font-size:24px; }
 
   .empty { text-align:center; padding:40px 20px; color:var(--sub); font-size:14px; }
 </style>
@@ -327,7 +390,14 @@ const cardsHtml = `<!doctype html>
       <button data-ratio="9x16">9:16 Stories</button>
     </div>
 
-    <h2>③ 條件</h2>
+    <h2>③ 主題</h2>
+    <div class="ratio-btns" id="theme-btns">
+      <button data-theme="t-punch" class="on">爆款</button>
+      <button data-theme="t-light">白底</button>
+      <button data-theme="t-mute">低調</button>
+    </div>
+
+    <h2>④ 條件</h2>
     <div class="field">
       <label>標題 (可改)</label>
       <input id="title" type="text" value="我們說 ✅ 不說 ❌">
@@ -358,7 +428,8 @@ const cardsHtml = `<!doctype html>
 (function () {
   const data = JSON.parse(document.getElementById('data').textContent);
   const sel = document.getElementById('cat');
-  const ratioBtns = document.querySelectorAll('.ratio-btns button');
+  const ratioBtns = document.querySelectorAll('main > aside .ratio-btns:not(#theme-btns) button');
+  const themeBtns = document.querySelectorAll('#theme-btns button');
   const titleInput = document.getElementById('title');
   const nInput = document.getElementById('n');
   const nVal = document.getElementById('n-val');
@@ -369,7 +440,10 @@ const cardsHtml = `<!doctype html>
   const previewWrap = document.querySelector('.preview-wrap');
   const dlBtn = document.getElementById('download');
 
-  let state = { cat: data.categories[0]?.slug ?? '', ratio: '1x1' };
+  // QR 指向 repo（部署到 Vercel/GitHub Pages 後可改成圖鑑站 URL）
+  const QR_TARGET = 'https://github.com/jimmyhusaas/taiwords';
+
+  let state = { cat: data.categories[0]?.slug ?? '', ratio: '1x1', theme: 't-punch' };
 
   // 填分類下拉，標註每類筆數（>=0.5 default）
   data.categories.forEach((c) => {
@@ -397,33 +471,50 @@ const cardsHtml = `<!doctype html>
 
     const catName = data.categories.find((c) => c.slug === state.cat)?.name ?? state.cat;
 
-    card.className = 'card r-' + state.ratio;
+    card.className = 'card r-' + state.ratio + ' ' + state.theme;
     if (subset.length === 0) {
-      card.innerHTML = '<div class="empty" style="color:#fff;font-size:38px;padding:80px">此分類在此信心度門檻下沒有詞彙，請降低門檻或換分類。</div>';
-    } else {
-      card.innerHTML = \`
-        <div class="head">
-          <div class="brand">TaiWords <span class="b-tag">台詞</span></div>
-          <div class="cat-name">\${esc(catName)}</div>
-          <div class="title">\${esc(titleInput.value)}</div>
-        </div>
-        <div class="list">
-          \${subset.map((t) => {
-            // cn_only 詞的台灣欄位常有長註解（如「（無精準對應，常譯內捲）」），
-            // 卡片版面擠不下也分散視覺，統一簡化成「（無對應）」
-            const tw = t.tw.startsWith('（無') || t.tw.startsWith('(無') ? '（無對應）' : t.tw;
-            return \`
-            <div class="item">
-              <span class="tw"><span class="check">✅</span>\${esc(tw)}</span>
-              <span class="arrow">←→</span>
-              <span class="cn"><span class="check">❌</span>\${esc(t.cn)}</span>
-            </div>\`;
-          }).join('')}
-        </div>
-        <div class="foot">
+      card.innerHTML = '<div class="empty" style="color:inherit;font-size:38px;padding:80px;text-align:center">此分類在此信心度門檻下沒有詞彙，請降低門檻或換分類。</div>';
+      return;
+    }
+
+    card.innerHTML = \`
+      <div class="head">
+        <div class="brand">TaiWords <span class="b-tag">台詞</span></div>
+        <div class="cat-name">\${esc(catName)}</div>
+        <div class="title">\${esc(titleInput.value)}</div>
+      </div>
+      <div class="list">
+        \${subset.map((t) => {
+          const tw = t.tw.startsWith('（無') || t.tw.startsWith('(無') ? '（無對應）' : t.tw;
+          return \`
+          <div class="item">
+            <span class="tw"><span class="check">✅</span>\${esc(tw)}</span>
+            <span class="arrow">←→</span>
+            <span class="cn"><span class="check">❌</span>\${esc(t.cn)}</span>
+          </div>\`;
+        }).join('')}
+      </div>
+      <div class="foot">
+        <div class="info">
           <span class="site">github.com/jimmyhusaas/taiwords</span>
-          <span class="meta">\${subset.length} 條 · 信心度 ≥ \${minConf.toFixed(2)}</span>
-        </div>\`;
+          <span class="meta">\${subset.length} 條 · 信心度 ≥ \${minConf.toFixed(2)} · 共 \${data.terms.length} 條圖鑑</span>
+        </div>
+        <div class="qr-wrap">
+          <canvas id="qr-canvas"></canvas>
+          <span class="scan-hint">看完整圖鑑</span>
+        </div>
+      </div>\`;
+
+    // 渲染 QR code 到 canvas。size 隨比例調整，9:16 較大。
+    const qrSize = state.ratio === '9x16' ? 220 : 170;
+    const canvas = card.querySelector('#qr-canvas');
+    if (canvas && window.QRCode) {
+      QRCode.toCanvas(canvas, QR_TARGET, {
+        width: qrSize,
+        margin: 1,
+        color: { dark: '#0f172a', light: '#ffffff' },
+        errorCorrectionLevel: 'M',
+      }, (err) => { if (err) console.error('QR error', err); });
     }
 
     fitPreview();
@@ -453,6 +544,11 @@ const cardsHtml = `<!doctype html>
   ratioBtns.forEach((b) => b.addEventListener('click', () => {
     state.ratio = b.dataset.ratio;
     ratioBtns.forEach((x) => x.classList.toggle('on', x === b));
+    render();
+  }));
+  themeBtns.forEach((b) => b.addEventListener('click', () => {
+    state.theme = b.dataset.theme;
+    themeBtns.forEach((x) => x.classList.toggle('on', x === b));
     render();
   }));
   window.addEventListener('resize', fitPreview);
