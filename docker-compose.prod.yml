@@ -1,0 +1,51 @@
+# TaiWords — 從 GHCR 拉 CI 剛 push 的 image 跑（不本機 build）。
+#
+# 用途：合到 main 後快速驗證 CI 產出的 image 真的能跑，比 docker compose up
+# 走 Dockerfile 本機 build 快很多（30 秒內，跳過 Gradle build）。
+#
+# 用法：
+#   docker login ghcr.io                       # 第一次要登入（用 GitHub PAT 或 gh CLI）
+#   docker compose -f docker-compose.prod.yml pull
+#   docker compose -f docker-compose.prod.yml up -d
+#   docker compose -f docker-compose.prod.yml logs -f api
+#   docker compose -f docker-compose.prod.yml down -v
+#
+# 想驗證特定 commit 的 image，把 :latest 換成 :<git short sha>，例如 :e6a6bf1。
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: taiwords-postgres
+    environment:
+      POSTGRES_DB: taiwords
+      POSTGRES_USER: taiwords
+      POSTGRES_PASSWORD: taiwords
+    ports:
+      - "5432:5432"
+    volumes:
+      - taiwords-pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "taiwords"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    image: ghcr.io/jimmyhusaas/taiwords-api:latest
+    container_name: taiwords-api
+    pull_policy: always       # 每次 up 都檢查 GHCR 上有沒有新 image
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      TAIWORDS_DB_URL: jdbc:postgresql://postgres:5432/taiwords
+      TAIWORDS_DB_USER: taiwords
+      TAIWORDS_DB_PASSWORD: taiwords
+      TAIWORDS_LOG_LEVEL: INFO
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+volumes:
+  taiwords-pg-data:

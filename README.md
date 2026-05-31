@@ -46,11 +46,26 @@ taiwords/
 
 ## 快速開始
 
-```bash
-# 啟動 PostgreSQL + API
-docker compose up -d
+兩條路擇一：
 
-# 等 API 啟動完成（約 20 秒）
+**A. 從 GHCR 拉 CI 剛 push 的 image**（驗證最新 main，最快 ~30 秒）
+
+```bash
+docker login ghcr.io                                       # 第一次需登入（用 GitHub PAT）
+docker compose -f docker-compose.prod.yml pull
+docker compose -f docker-compose.prod.yml up -d
+```
+
+**B. 本機 build**（改動程式碼測試用，約 1–3 分鐘）
+
+```bash
+docker compose up -d
+```
+
+啟動完成後（約 20 秒），兩條路徑共用以下驗證：
+
+```bash
+# 健康檢查
 curl http://localhost:8080/api/v1/healthz
 
 # 查所有詞條
