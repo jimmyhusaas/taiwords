@@ -270,6 +270,7 @@ const cardsHtml = `<!doctype html>
     --c-foot: #cbd5e1;
     --c-tw: #86efac;
     --c-cn: #fca5a5;
+    --c-cn-strike: rgba(252,165,165,0.5);
     --c-arrow: #64748b;
     --c-accent: #fbbf24;
     --c-brand-tag-bg: #ffffff;
@@ -298,7 +299,8 @@ const cardsHtml = `<!doctype html>
   .card.t-punch {
     --c-bg-gradient: linear-gradient(160deg, #0f172a 0%, #1e293b 60%, #334155 100%);
     --c-ink:#ffffff; --c-sub:#94a3b8; --c-foot:#cbd5e1;
-    --c-tw:#86efac; --c-cn:#fca5a5; --c-arrow:#64748b;
+    --c-tw:#86efac; --c-cn:#fca5a5; --c-cn-strike:rgba(252,165,165,0.5);
+    --c-arrow:#64748b;
     --c-accent:#fbbf24;
     --c-brand-tag-bg:#ffffff; --c-brand-tag-ink:#0f172a;
     --c-glow: rgba(251,191,36,0.18);
@@ -307,7 +309,8 @@ const cardsHtml = `<!doctype html>
   .card.t-light {
     --c-bg-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     --c-ink:#0f172a; --c-sub:#64748b; --c-foot:#475569;
-    --c-tw:#15803d; --c-cn:#b91c1c; --c-arrow:#94a3b8;
+    --c-tw:#15803d; --c-cn:#b91c1c; --c-cn-strike:rgba(185,28,28,0.45);
+    --c-arrow:#94a3b8;
     --c-accent:#0f172a;
     --c-brand-tag-bg:#0f172a; --c-brand-tag-ink:#ffffff;
     --c-glow: rgba(15,23,42,0.06);
@@ -316,7 +319,8 @@ const cardsHtml = `<!doctype html>
   .card.t-mute {
     --c-bg-gradient: linear-gradient(160deg, #fef7ed 0%, #fef3c7 50%, #fde68a 100%);
     --c-ink:#1c1917; --c-sub:#78716c; --c-foot:#44403c;
-    --c-tw:#166534; --c-cn:#9a3412; --c-arrow:#a8a29e;
+    --c-tw:#166534; --c-cn:#9a3412; --c-cn-strike:rgba(154,52,18,0.45);
+    --c-arrow:#a8a29e;
     --c-accent:#7c2d12;
     --c-brand-tag-bg:#1c1917; --c-brand-tag-ink:#fef7ed;
     --c-glow: rgba(124,45,18,0.10);
@@ -333,7 +337,7 @@ const cardsHtml = `<!doctype html>
   .card .item { display:flex; align-items:center; gap:28px; font-size:48px; font-weight:600; line-height:1.2; }
   .card .item .arrow { color:var(--c-arrow); font-size:34px; font-weight:400; }
   .card .item .tw { color:var(--c-tw); display:flex; align-items:center; gap:16px; min-width:0; }
-  .card .item .cn { color:var(--c-cn); text-decoration:line-through; text-decoration-color:color-mix(in srgb, var(--c-cn) 50%, transparent); display:flex; align-items:center; gap:16px; min-width:0; }
+  .card .item .cn { color:var(--c-cn); text-decoration:line-through; text-decoration-color:var(--c-cn-strike); display:flex; align-items:center; gap:16px; min-width:0; }
   .card .item .check { font-size:40px; }
 
   /* ── 浮水印 / QR ───────────────────────────────────── */
