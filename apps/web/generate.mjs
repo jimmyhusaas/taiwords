@@ -133,6 +133,9 @@ const html = `<!doctype html>
   header.hero p { margin:8px 0 0; color:#cbd5e1; font-size:14px; }
   header.hero .stats { margin-top:14px; display:flex; gap:18px; font-size:13px; color:#94a3b8; flex-wrap:wrap; }
   header.hero .stats b { color:#fff; font-size:16px; }
+  header.hero .cta { margin-top:14px; }
+  header.hero .cta a { color:#fbbf24; text-decoration:none; font-size:14px; font-weight:500; }
+  header.hero .cta a:hover { text-decoration:underline; }
 
   nav.cats { position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid var(--line); padding:10px 20px; overflow-x:auto; white-space:nowrap; }
   nav.cats .wrap { max-width:1100px; margin:0 auto; display:flex; gap:6px; }
@@ -182,6 +185,7 @@ const html = `<!doctype html>
       <span><b>${grouped.size}</b> 個分類</span>
       <span><b>${disputed}</b> 條標為爭議/參考（信心度 &lt; 50%）</span>
     </div>
+    <p class="cta"><a href="cards.html">→ 卡片產生器：選分類匯出 PNG，分享到 Threads / IG</a></p>
   </div>
 </header>
 <nav class="cats"><div class="wrap">${nav}</div></nav>
@@ -199,3 +203,285 @@ const html = `<!doctype html>
 mkdirSync(resolve(__dirname, 'dist'), { recursive: true });
 writeFileSync(resolve(__dirname, 'dist/index.html'), html, 'utf8');
 console.log(`圖鑑已產生：dist/index.html（${total} 條、${grouped.size} 分類、${disputed} 條爭議）`);
+
+// ─── 卡片產生器 ───────────────────────────────────────────
+// 純前端，html2canvas 把 DOM 截成 PNG。使用者選分類 / 比例 / 信心度門檻，
+// 即時預覽，按一鍵下載 1080px 解析度卡片，丟 Threads / IG 用。
+const cardData = {
+  categories: categories.map((c) => ({ slug: c.slug, name: c.nameZhTw ?? c.name_zh_tw })),
+  // 卡片只用得到這四個欄位，序列化精簡一點，HTML 也小一點
+  terms: terms.map((t) => ({
+    tw: t.canonical_zh_tw,
+    cn: t.canonical_zh_cn,
+    conf: t.confidence ?? 0,
+    cats: t.categories ?? [],
+  })),
+};
+
+const cardsHtml = `<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TaiWords 卡片產生器</title>
+<meta name="description" content="從 TaiWords 圖鑑挑一個分類，匯出可分享到 Threads / IG 的對照卡片 PNG。">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+  :root { --bg:#0f172a; --ink:#0f172a; --sub:#64748b; --line:#e2e8f0; --tw:#16a34a; --cn:#dc2626; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"PingFang TC","Noto Sans TC",system-ui,-apple-system,sans-serif; background:#f1f5f9; color:var(--ink); }
+
+  header.bar { background:var(--bg); color:#fff; padding:16px 20px; }
+  header.bar .wrap { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  header.bar h1 { margin:0; font-size:18px; }
+  header.bar .badge { font-size:12px; background:#fff; color:var(--bg); padding:2px 7px; border-radius:5px; }
+  header.bar a { color:#cbd5e1; text-decoration:none; font-size:13px; margin-left:auto; }
+  header.bar a:hover { color:#fff; }
+
+  main { max-width:1200px; margin:0 auto; padding:20px; display:grid; grid-template-columns:300px 1fr; gap:24px; }
+  @media (max-width:760px) { main { grid-template-columns:1fr; } }
+
+  .panel { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; display:flex; flex-direction:column; gap:14px; align-self:start; }
+  .panel h2 { margin:0; font-size:14px; color:var(--sub); font-weight:600; }
+  .field label { display:block; font-size:12px; color:var(--sub); margin-bottom:5px; font-weight:500; }
+  .field select, .field input[type=text] { width:100%; padding:7px 10px; font-size:13px; border:1px solid var(--line); border-radius:6px; font-family:inherit; }
+  .field input[type=range] { width:100%; }
+  .row { display:flex; gap:8px; align-items:baseline; font-size:11px; color:var(--sub); }
+  .row b { color:var(--ink); font-variant-numeric:tabular-nums; }
+  .ratio-btns { display:flex; gap:6px; }
+  .ratio-btns button { flex:1; padding:6px 8px; font-size:12px; border:1px solid var(--line); border-radius:5px; background:#fff; cursor:pointer; font-family:inherit; }
+  .ratio-btns button.on { background:var(--bg); color:#fff; border-color:var(--bg); }
+  .download { background:var(--bg); color:#fff; border:0; padding:10px 14px; font-size:14px; font-weight:600; border-radius:6px; cursor:pointer; font-family:inherit; }
+  .download:disabled { background:#94a3b8; cursor:wait; }
+  .download:hover:not(:disabled) { background:#1e293b; }
+  .hint { font-size:11px; color:var(--sub); margin:0; line-height:1.5; }
+
+  .preview-wrap { display:flex; justify-content:center; align-items:flex-start; padding:20px; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:auto; }
+  .preview-scaler { transform-origin:top center; }
+
+  /* 卡片本身：實際 1080px 寬，內容 scaling 由 ratio 控 */
+  .card {
+    width:1080px;
+    background:linear-gradient(160deg, #0f172a 0%, #1e293b 60%, #334155 100%);
+    color:#fff;
+    padding:64px 72px;
+    font-family:"PingFang TC","Noto Sans TC",system-ui,sans-serif;
+    display:flex;
+    flex-direction:column;
+    box-sizing:border-box;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before {
+    content:""; position:absolute; top:-100px; right:-100px;
+    width:400px; height:400px; border-radius:50%;
+    background:radial-gradient(circle, rgba(251,191,36,0.15) 0%, transparent 70%);
+  }
+  .card .head { position:relative; z-index:1; margin-bottom:48px; }
+  .card .brand { font-size:28px; font-weight:700; display:flex; align-items:center; gap:12px; }
+  .card .brand .b-tag { font-size:18px; background:#fff; color:#0f172a; padding:4px 12px; border-radius:6px; }
+  .card .cat-name { margin-top:18px; font-size:64px; font-weight:800; letter-spacing:-1px; }
+  .card .title { margin-top:14px; font-size:30px; color:#fbbf24; font-weight:500; }
+
+  .card .list { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; gap:24px; justify-content:center; }
+  .card .item { display:flex; align-items:center; gap:24px; font-size:46px; font-weight:600; line-height:1.2; }
+  .card .item .arrow { color:#64748b; font-size:32px; font-weight:400; }
+  .card .item .tw { color:#86efac; display:flex; align-items:center; gap:14px; min-width:0; }
+  .card .item .cn { color:#fca5a5; text-decoration:line-through; text-decoration-color:rgba(252,165,165,0.5); display:flex; align-items:center; gap:14px; min-width:0; }
+  .card .item .check { font-size:38px; }
+
+  .card .foot { position:relative; z-index:1; margin-top:48px; display:flex; justify-content:space-between; align-items:flex-end; font-size:22px; color:#94a3b8; }
+  .card .foot .site { font-weight:600; color:#cbd5e1; }
+  .card .foot .meta { font-size:18px; }
+
+  /* 比例：透過 padding 控制；1080 寬固定 */
+  .card.r-1x1 { height:1080px; }
+  .card.r-4x5 { height:1350px; }
+  .card.r-9x16 { height:1920px; }
+  .card.r-9x16 .list { gap:36px; }
+  .card.r-9x16 .item { font-size:54px; }
+
+  .empty { text-align:center; padding:40px 20px; color:var(--sub); font-size:14px; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <h1>TaiWords <span class="badge">台詞</span> 卡片產生器</h1>
+    <a href="index.html">← 回圖鑑</a>
+  </div>
+</header>
+
+<main>
+  <aside class="panel">
+    <h2>① 分類</h2>
+    <div class="field">
+      <select id="cat"></select>
+    </div>
+
+    <h2>② 比例</h2>
+    <div class="ratio-btns">
+      <button data-ratio="1x1" class="on">1:1 IG</button>
+      <button data-ratio="4x5">4:5 IG</button>
+      <button data-ratio="9x16">9:16 Stories</button>
+    </div>
+
+    <h2>③ 條件</h2>
+    <div class="field">
+      <label>標題 (可改)</label>
+      <input id="title" type="text" value="我們說 ✅ 不說 ❌">
+    </div>
+    <div class="field">
+      <label>每張顯示筆數 <b id="n-val">10</b></label>
+      <input id="n" type="range" min="5" max="14" step="1" value="10">
+    </div>
+    <div class="field">
+      <label>最低信心度 <b id="conf-val">0.70</b></label>
+      <input id="conf" type="range" min="0.3" max="1" step="0.05" value="0.7">
+    </div>
+    <p class="hint">信心度 ≥ 0.7 是公認支語，0.5–0.7 多為灰色詞，&lt; 0.5 為爭議/迷思詞（預設排除）。</p>
+
+    <button class="download" id="download">下載 PNG</button>
+    <p class="hint">PNG 為 1080px 寬，可直接上傳 IG / Threads。檔名含分類與比例。</p>
+  </aside>
+
+  <section class="preview-wrap">
+    <div class="preview-scaler">
+      <div id="card" class="card r-1x1"></div>
+    </div>
+  </section>
+</main>
+
+<script type="application/json" id="data">${JSON.stringify(cardData)}</script>
+<script>
+(function () {
+  const data = JSON.parse(document.getElementById('data').textContent);
+  const sel = document.getElementById('cat');
+  const ratioBtns = document.querySelectorAll('.ratio-btns button');
+  const titleInput = document.getElementById('title');
+  const nInput = document.getElementById('n');
+  const nVal = document.getElementById('n-val');
+  const confInput = document.getElementById('conf');
+  const confVal = document.getElementById('conf-val');
+  const card = document.getElementById('card');
+  const scaler = document.querySelector('.preview-scaler');
+  const previewWrap = document.querySelector('.preview-wrap');
+  const dlBtn = document.getElementById('download');
+
+  let state = { cat: data.categories[0]?.slug ?? '', ratio: '1x1' };
+
+  // 填分類下拉，標註每類筆數（>=0.5 default）
+  data.categories.forEach((c) => {
+    const count = data.terms.filter((t) => t.cats.includes(c.slug) && t.conf >= 0.5).length;
+    const opt = document.createElement('option');
+    opt.value = c.slug;
+    opt.textContent = \`\${c.name} (\${count})\`;
+    sel.appendChild(opt);
+  });
+
+  function render() {
+    const minConf = parseFloat(confInput.value);
+    const n = parseInt(nInput.value, 10);
+    const subset = data.terms
+      .filter((t) => t.cats.includes(state.cat) && t.conf >= minConf)
+      .sort((a, b) => b.conf - a.conf)
+      .slice(0, n);
+
+    const catName = data.categories.find((c) => c.slug === state.cat)?.name ?? state.cat;
+
+    card.className = 'card r-' + state.ratio;
+    if (subset.length === 0) {
+      card.innerHTML = '<div class="empty" style="color:#fff;font-size:38px;padding:80px">此分類在此信心度門檻下沒有詞彙，請降低門檻或換分類。</div>';
+    } else {
+      card.innerHTML = \`
+        <div class="head">
+          <div class="brand">TaiWords <span class="b-tag">台詞</span></div>
+          <div class="cat-name">\${esc(catName)}</div>
+          <div class="title">\${esc(titleInput.value)}</div>
+        </div>
+        <div class="list">
+          \${subset.map((t) => \`
+            <div class="item">
+              <span class="tw"><span class="check">✅</span>\${esc(t.tw)}</span>
+              <span class="arrow">←→</span>
+              <span class="cn"><span class="check">❌</span>\${esc(t.cn)}</span>
+            </div>
+          \`).join('')}
+        </div>
+        <div class="foot">
+          <span class="site">github.com/jimmyhusaas/taiwords</span>
+          <span class="meta">\${subset.length} 條 · 信心度 ≥ \${minConf.toFixed(2)}</span>
+        </div>\`;
+    }
+
+    fitPreview();
+  }
+
+  // 把卡片縮放到 preview 容器寬度
+  function fitPreview() {
+    const wrap = previewWrap.getBoundingClientRect();
+    const target = Math.min(wrap.width - 40, 480);
+    const scale = target / 1080;
+    scaler.style.transform = \`scale(\${scale})\`;
+    // 容器高度跟著縮：1080 寬 * scale = target；高度按比例 * scale
+    const h = state.ratio === '1x1' ? 1080 : state.ratio === '4x5' ? 1350 : 1920;
+    scaler.style.height = (h * scale) + 'px';
+    scaler.style.width = '1080px';
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+  }
+
+  // events
+  sel.addEventListener('change', () => { state.cat = sel.value; render(); });
+  titleInput.addEventListener('input', render);
+  nInput.addEventListener('input', () => { nVal.textContent = nInput.value; render(); });
+  confInput.addEventListener('input', () => { confVal.textContent = parseFloat(confInput.value).toFixed(2); render(); });
+  ratioBtns.forEach((b) => b.addEventListener('click', () => {
+    state.ratio = b.dataset.ratio;
+    ratioBtns.forEach((x) => x.classList.toggle('on', x === b));
+    render();
+  }));
+  window.addEventListener('resize', fitPreview);
+
+  dlBtn.addEventListener('click', async () => {
+    dlBtn.disabled = true;
+    dlBtn.textContent = '生成中…';
+    try {
+      // 截 PNG 前暫時 unscale 到 1:1，截完還原
+      const prev = scaler.style.transform;
+      scaler.style.transform = 'scale(1)';
+      const canvas = await html2canvas(card, {
+        backgroundColor: null,
+        scale: 1,
+        useCORS: true,
+        logging: false,
+      });
+      scaler.style.transform = prev;
+      fitPreview();
+      const blob = await new Promise((r) => canvas.toBlob(r, 'image/png'));
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = \`taiwords-\${state.cat}-\${state.ratio}.png\`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      alert('生成失敗：' + e.message);
+      console.error(e);
+    } finally {
+      dlBtn.disabled = false;
+      dlBtn.textContent = '下載 PNG';
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>`;
+
+writeFileSync(resolve(__dirname, 'dist/cards.html'), cardsHtml, 'utf8');
+console.log(`卡片產生器已產生：dist/cards.html`);
