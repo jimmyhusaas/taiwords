@@ -9,6 +9,7 @@
     "serve": "node generate.mjs && cd dist && python3 -m http.server 4173"
   },
   "devDependencies": {
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "puppeteer": "^25.1.0"
   }
 }

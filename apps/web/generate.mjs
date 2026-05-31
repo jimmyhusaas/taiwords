@@ -383,9 +383,16 @@ const cardsHtml = `<!doctype html>
   function render() {
     const minConf = parseFloat(confInput.value);
     const n = parseInt(nInput.value, 10);
+    // 卡片視覺要 1:1 對照才有梗，cn_only（左邊「(無對應)」）排後面
+    const isCounterpart = (t) => !t.tw.startsWith('（無對應') && !t.tw.startsWith('(無對應');
     const subset = data.terms
       .filter((t) => t.cats.includes(state.cat) && t.conf >= minConf)
-      .sort((a, b) => b.conf - a.conf)
+      .sort((a, b) => {
+        const ac = isCounterpart(a) ? 1 : 0;
+        const bc = isCounterpart(b) ? 1 : 0;
+        if (ac !== bc) return bc - ac;            // 有對照的優先
+        return b.conf - a.conf;                   // 同類再按信心度
+      })
       .slice(0, n);
 
     const catName = data.categories.find((c) => c.slug === state.cat)?.name ?? state.cat;
@@ -401,13 +408,17 @@ const cardsHtml = `<!doctype html>
           <div class="title">\${esc(titleInput.value)}</div>
         </div>
         <div class="list">
-          \${subset.map((t) => \`
+          \${subset.map((t) => {
+            // cn_only 詞的台灣欄位常有長註解（如「（無精準對應，常譯內捲）」），
+            // 卡片版面擠不下也分散視覺，統一簡化成「（無對應）」
+            const tw = t.tw.startsWith('（無') || t.tw.startsWith('(無') ? '（無對應）' : t.tw;
+            return \`
             <div class="item">
-              <span class="tw"><span class="check">✅</span>\${esc(t.tw)}</span>
+              <span class="tw"><span class="check">✅</span>\${esc(tw)}</span>
               <span class="arrow">←→</span>
               <span class="cn"><span class="check">❌</span>\${esc(t.cn)}</span>
-            </div>
-          \`).join('')}
+            </div>\`;
+          }).join('')}
         </div>
         <div class="foot">
           <span class="site">github.com/jimmyhusaas/taiwords</span>
