@@ -1,0 +1,64 @@
+name: Deploy 圖鑑 to GitHub Pages
+
+# main 上 apps/web 或 data/seed/ 有變動就 rebuild + deploy。
+# 也允許從 Actions 頁手動觸發（workflow_dispatch），用於詞庫更新後重新部署。
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/web/**'
+      - 'data/seed/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+# GitHub Pages 必需的權限組合（contents:read 讀 repo、pages:write 上傳、id-token 簽署）
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一個 Pages 環境同時只跑一個 deploy。佇列模式：新的等舊的完成（不取消）。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build 圖鑑 + 卡片產生器
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: apps/web/pnpm-lock.yaml
+
+      - name: Install deps
+        working-directory: apps/web
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate static site
+        working-directory: apps/web
+        run: pnpm build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/web/dist
+
+  deploy:
+    name: Publish to Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
